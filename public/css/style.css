@@ -1,0 +1,251 @@
+    /* Sheet Settings */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .35);
+    border-radius: 5px;
+
+}
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, .55);
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
+p {
+    font-size: 20px;
+}
+
+.centerFlex {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: #d16a40;
+}
+
+
+    /* Sheet Header */
+header {
+    background: #05143f;
+    color: white;
+    position: fixed;
+    width: 100%;
+
+}
+
+.bannerPicture {
+    height: 48px;
+    width: 150px;
+    margin: auto 0 auto 2px;
+    padding: 0;
+}
+
+.topMenuFrame,
+.viewBox {
+    max-width: 1200px;
+}
+
+.topMenuFrame {
+    align-items: center;
+    margin: 0 auto;
+}
+
+nav {
+    display: none;
+    align-items: center;
+    margin-left: 50px;
+    z-index: 1000;
+}
+
+.navItem {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px;
+    border-bottom: 2px solid #67dcfc;
+    font: normal normal normal 16px/1.4em worksans-extralight,'work sans',sans-serif;
+}
+
+#covid {
+    color: #d16a40;
+}
+
+.navItem:hover,
+#covid:hover,
+a:hover {
+    color: #67dcfc;
+}
+
+
+
+/* Main */
+
+main {
+    /* text-align: center; */
+}
+
+.parachuteLogoWrapper {
+    padding-top: 60px;
+    background-color: #05143f;
+    text-align: center;
+    width: 100%;
+    color: white;
+    padding-bottom: 20px;
+}
+
+.parachuteLogo {
+    max-width: 600px;
+    width: 100%
+    margin: 0 auto;
+}
+
+
+
+.viewBox {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stephProfile {
+    flex-direction: column;
+    margin: 60px auto;
+    width: 100%;
+    max-width: 800px;
+    align-items: center;
+
+}
+
+.stephText {
+    padding: 5px;
+}
+
+.stephImage {
+    height: 365px;
+    width: 365px;
+}
+
+.blueBox span {
+    flex-grow: 1;
+    width: 300px;
+}
+
+.blueIcon {
+    height: 150px;
+}
+
+.blueText {
+    font-size: 26px;
+    color: #03a7ff;
+    padding: 3px;
+    margin: 0;
+}
+
+.therapistSelect a {
+    margin: 150px auto 100px;
+    width: 400px;
+}
+
+.solidGreenBtn {
+    background-color: #4eff78;
+    border: 2px solid #4eff78;
+    font-size: 22px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 10px 20px;
+    color: black;
+    border-radius: 30px;
+}
+
+.solidGreenBtn:hover {
+    color: white;
+}
+
+.hollowGreenBtn {
+    background-color: transparent;
+    border: 2px solid #4eff78;
+    font-size: 22px;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 10px 20px;
+    color: black;
+    border-radius: 30px;
+}
+
+.hollowGreenBtn:hover {
+    color: white;
+    background-color: #4eff78;
+}
+
+.faq {
+    display: inline-block;
+}
+
+.needHelp {
+    display: block;
+    padding: 5px;
+    margin: 10px;
+}
+
+.faqQuestion {
+    margin-bottom:2px;
+    padding-bottom: 2px;
+    text-align: left;
+}
+
+.faqAnswer {
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+
+}
+
+.weServe li {
+    font-size: 20px;
+}
+
+/* Media Queries */
+
+footer {
+    background: #05143f;
+    color: white;
+    text-align: center;
+    padding: 15px 0 5px;
+    margin: 0;
+}
+
+footer p {
+    padding: 5px;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* Media Queries */
+
+
+@media (min-width: 700px) {
+    .stephProfile {
+        flex-direction: row;
+        border-left: 3px solid black;
+    }
+
+    nav {
+        display: flex;
+    }
+}
