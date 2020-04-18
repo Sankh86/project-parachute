@@ -36,11 +36,275 @@
 
 		<main>
 			<section class="parachuteLogoWrapper">
-				<h1>Project Parachute</h1>
-				<h2>Pro Bono Therapy for COVID-19 Frontliners</h2>
+				<img class="parachuteLogo" src="img/ProjectParachute_logo_rev.webp">
 			</section>
 			<section class="viewBox">
-				
+				<h3 class="faqQuestion">Who?</h3>
+				<p class="faqAnswer">We are looking for local community and private practice therapists who would like to support medical staff in the hospitals.</p>
+				<h3 class="faqQuestion">How can you help?</h3>
+				<p class="faqAnswer">If you have the ability to provide pro bono online therapy services, please complete the form below.</p>
+				<p class="faqAnswer">We will keep all responses confidential and only share your details once we will have a match with a healthcare employee.</p>
+				<p class="faqAnswer">We know that times of uncertainty and chronic stress can exacerbate existing mental health concerns. Please consider supporting this effort and helping those on the front lines of the COVID-19 pandemic.</p>
+				<form class="formBox">
+					<input type="text" placeholder="Full Name" id="onboardName" class="formInput" required>
+					<input type="email" placeholder="Email" id="onboardEmail" class="formInput" required>
+					<input type="tel" placeholder="Phone # (123-456-7890)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="onboardPhoneNumber" class="formInput" required>
+					<span class="formLabelBox">
+						<label>Upload Profile Image</label>
+						<input type="file" id="onboardImage" accept="image/png, image/jpeg">
+					</span>
+					<span class="formLabelBox">
+						<label>Are you in-network with any insurance providers? If yes, which ones? *</label>
+						<input type="text" placeholder="Enter Here" id="onboardInsurance" required>
+					</span>
+					<span class="formLabelBox">
+						<label>Which mental health conditions do you specialize in? *</label>
+						<input type="text" placeholder="Enter Here" id="onboardSpecialization" required>
+					</span>
+					<span class="formStateWrap">
+						<label>Liscensed State</label>
+						<select required="" id="onboardStateA">
+							<option value="none">-Select State-</option>
+							<option value="Alabama">Alabama</option>
+							<option value="Alaska">Alaska</option>
+							<option value="Arizona">Arizona</option>
+							<option value="Arkansas">Arkansas</option>
+							<option value="California">California</option>
+							<option value="Colorado">Colorado</option>
+							<option value="Connecticut">Connecticut</option>
+							<option value="Delaware">Delaware</option>
+							<option value="Florida">Florida</option>
+							<option value="Georgia">Georgia</option>
+							<option value="Hawaii">Hawaii</option>
+							<option value="Idaho">Idaho</option>
+							<option value="Illinois">Illinois</option>
+							<option value="Indiana">Indiana</option>
+							<option value="Iowa">Iowa</option>
+							<option value="Kansas">Kansas</option>
+							<option value="Kentucky">Kentucky</option>
+							<option value="Louisiana">Louisiana</option>
+							<option value="Maine">Maine</option>
+							<option value="Maryland">Maryland</option>
+							<option value="Massachusetts">Massachusetts</option>
+							<option value="Michigan">Michigan</option>
+							<option value="Minnesota">Minnesota</option>
+							<option value="Mississippi">Mississippi</option>
+							<option value="Missouri">Missouri</option>
+							<option value="Montana">Montana</option>
+							<option value="Nebraska">Nebraska</option>
+							<option value="Nevada">Nevada</option>
+							<option value="New Hampshire">New Hampshire</option>
+							<option value="New Jersey">New Jersey</option>
+							<option value="New Mexico">New Mexico</option>
+							<option value="New York">New York</option>
+							<option value="North Carolina">North Carolina</option>
+							<option value="North Dakota">North Dakota</option>
+							<option value="Ohio">Ohio</option>
+							<option value="Oklahoma">Oklahoma</option>
+							<option value="Oregon">Oregon</option>
+							<option value="Pennsylvania">Pennsylvania</option>
+							<option value="Rhode Island">Rhode Island</option>
+							<option value="South Carolina">South Carolina</option>
+							<option value="South Dakota">South Dakota</option>
+							<option value="Tennessee">Tennessee</option>
+							<option value="Texas">Texas</option>
+							<option value="Utah">Utah</option>
+							<option value="Vermont">Vermont</option>
+							<option value="Virginia">Virginia</option>
+							<option value="Washington">Washington</option>
+							<option value="Washington DC">Washington DC</option>
+							<option value="West Virginia">West Virginia</option>
+							<option value="Wisconsin">Wisconsin</option>
+							<option value="Wyoming">Wyoming</option>
+						</select>
+						<input type="text" placeholder="Liscense #" id="onboardLiscenseNoA" required>
+					</span>
+					<span class="formStateWrap">
+						<label>Liscensed State</label>
+						<select required="" id="onboardStateB">
+							<option value="none">-Select State-</option>
+							<option value="Alabama">Alabama</option>
+							<option value="Alaska">Alaska</option>
+							<option value="Arizona">Arizona</option>
+							<option value="Arkansas">Arkansas</option>
+							<option value="California">California</option>
+							<option value="Colorado">Colorado</option>
+							<option value="Connecticut">Connecticut</option>
+							<option value="Delaware">Delaware</option>
+							<option value="Florida">Florida</option>
+							<option value="Georgia">Georgia</option>
+							<option value="Hawaii">Hawaii</option>
+							<option value="Idaho">Idaho</option>
+							<option value="Illinois">Illinois</option>
+							<option value="Indiana">Indiana</option>
+							<option value="Iowa">Iowa</option>
+							<option value="Kansas">Kansas</option>
+							<option value="Kentucky">Kentucky</option>
+							<option value="Louisiana">Louisiana</option>
+							<option value="Maine">Maine</option>
+							<option value="Maryland">Maryland</option>
+							<option value="Massachusetts">Massachusetts</option>
+							<option value="Michigan">Michigan</option>
+							<option value="Minnesota">Minnesota</option>
+							<option value="Mississippi">Mississippi</option>
+							<option value="Missouri">Missouri</option>
+							<option value="Montana">Montana</option>
+							<option value="Nebraska">Nebraska</option>
+							<option value="Nevada">Nevada</option>
+							<option value="New Hampshire">New Hampshire</option>
+							<option value="New Jersey">New Jersey</option>
+							<option value="New Mexico">New Mexico</option>
+							<option value="New York">New York</option>
+							<option value="North Carolina">North Carolina</option>
+							<option value="North Dakota">North Dakota</option>
+							<option value="Ohio">Ohio</option>
+							<option value="Oklahoma">Oklahoma</option>
+							<option value="Oregon">Oregon</option>
+							<option value="Pennsylvania">Pennsylvania</option>
+							<option value="Rhode Island">Rhode Island</option>
+							<option value="South Carolina">South Carolina</option>
+							<option value="South Dakota">South Dakota</option>
+							<option value="Tennessee">Tennessee</option>
+							<option value="Texas">Texas</option>
+							<option value="Utah">Utah</option>
+							<option value="Vermont">Vermont</option>
+							<option value="Virginia">Virginia</option>
+							<option value="Washington">Washington</option>
+							<option value="Washington DC">Washington DC</option>
+							<option value="West Virginia">West Virginia</option>
+							<option value="Wisconsin">Wisconsin</option>
+							<option value="Wyoming">Wyoming</option>
+						</select>
+						<input type="text" placeholder="Liscense #" id="onboardLiscenseNoB" required>
+					</span>
+					<span class="formStateWrap">
+						<label>Liscensed State</label>
+						<select required="" id="onboardStateC">
+							<option value="none">-Select State-</option>
+							<option value="Alabama">Alabama</option>
+							<option value="Alaska">Alaska</option>
+							<option value="Arizona">Arizona</option>
+							<option value="Arkansas">Arkansas</option>
+							<option value="California">California</option>
+							<option value="Colorado">Colorado</option>
+							<option value="Connecticut">Connecticut</option>
+							<option value="Delaware">Delaware</option>
+							<option value="Florida">Florida</option>
+							<option value="Georgia">Georgia</option>
+							<option value="Hawaii">Hawaii</option>
+							<option value="Idaho">Idaho</option>
+							<option value="Illinois">Illinois</option>
+							<option value="Indiana">Indiana</option>
+							<option value="Iowa">Iowa</option>
+							<option value="Kansas">Kansas</option>
+							<option value="Kentucky">Kentucky</option>
+							<option value="Louisiana">Louisiana</option>
+							<option value="Maine">Maine</option>
+							<option value="Maryland">Maryland</option>
+							<option value="Massachusetts">Massachusetts</option>
+							<option value="Michigan">Michigan</option>
+							<option value="Minnesota">Minnesota</option>
+							<option value="Mississippi">Mississippi</option>
+							<option value="Missouri">Missouri</option>
+							<option value="Montana">Montana</option>
+							<option value="Nebraska">Nebraska</option>
+							<option value="Nevada">Nevada</option>
+							<option value="New Hampshire">New Hampshire</option>
+							<option value="New Jersey">New Jersey</option>
+							<option value="New Mexico">New Mexico</option>
+							<option value="New York">New York</option>
+							<option value="North Carolina">North Carolina</option>
+							<option value="North Dakota">North Dakota</option>
+							<option value="Ohio">Ohio</option>
+							<option value="Oklahoma">Oklahoma</option>
+							<option value="Oregon">Oregon</option>
+							<option value="Pennsylvania">Pennsylvania</option>
+							<option value="Rhode Island">Rhode Island</option>
+							<option value="South Carolina">South Carolina</option>
+							<option value="South Dakota">South Dakota</option>
+							<option value="Tennessee">Tennessee</option>
+							<option value="Texas">Texas</option>
+							<option value="Utah">Utah</option>
+							<option value="Vermont">Vermont</option>
+							<option value="Virginia">Virginia</option>
+							<option value="Washington">Washington</option>
+							<option value="Washington DC">Washington DC</option>
+							<option value="West Virginia">West Virginia</option>
+							<option value="Wisconsin">Wisconsin</option>
+							<option value="Wyoming">Wyoming</option>
+						</select>
+						<input type="text" placeholder="Liscense #" id="onboardLiscenseNoC" required>
+					</span>
+					<div>
+						<p>Weekly Availability</p>
+						<label>Liscensed State</label>
+						<select required="" id="onboardTimezone">
+							<option value="none">-Select Timezone-</option>
+							<option value="EST">EST</option>
+							<option value="CST">CST</option>
+							<option value="MST">MST</option>
+							<option value="PST">PST</option>
+							<option value="AKST">AKST</option>
+							<option value="HST">HST</option>
+						</select>
+						<div class="formDaySchedule">
+							<label>Mon</label>	
+							<input type="time" id="onboardMonStart">
+							<label>to</label>
+							<input type="time" id="onboardMonEnd">
+						</div>
+						<div class="formDaySchedule">
+							<label>Tue</label>	
+							<input type="time" id="onboardTueStart">
+							<label>to</label>
+							<input type="time" id="onboardTueEnd">
+						</div>
+						<div class="formDaySchedule">
+							<label>Wed</label>	
+							<input type="time" id="onboardWedStart">
+							<label>to</label>
+							<input type="time" id="onboardWedEnd">
+						</div>
+						<div class="formDaySchedule">
+							<label>Thu</label>	
+							<input type="time" id="onboardThuStart">
+							<label>to</label>
+							<input type="time" id="onboardThuEnd">
+						</div>
+						<div class="formDaySchedule">
+							<label>Fri</label>	
+							<input type="time" id="onboardFriStart">
+							<label>to</label>
+							<input type="time" id="onboardFriEnd">
+						</div>
+						<div class="formDaySchedule">
+							<label>Sat</label>	
+							<input type="time" id="onboardSatStart">
+							<label>to</label>
+							<input type="time" id="onboardSatEnd">
+						</div>
+						<div class="formDaySchedule">
+							<label>Sun</label>	
+							<input type="time" id="onboardSunStart">
+							<label>to</label>
+							<input type="time" id="onboardSunEnd">
+						</div>
+					</div>
+					<span id="formConsent" class="formLabelBox">
+						<label>Do you give us permission to share your details on our website?<br>Your email and phone number <span style="font-weight:bold;">will not</span> be visible on your profile.</label>
+						<span>
+							<input type="radio" id="onboardDisplayYes" name="onboardDisplay" value="Yes" class="formRadioButton">
+							<label for="onboardDisplayYes" class="formRadioLabel">Yes</label>
+						</span>
+						<span>
+							<input type="radio" id="onboardDisplayNo" name="onboardDisplay" value="No" class="formRadioButton">
+							<label for="onboardDisplayNo" class="formRadioLabel">No</label>
+						</span>
+					</span>
+					<div>
+						<input type="submit">
+					</div>
+				</form>
 			</section>
 			
 		</main>

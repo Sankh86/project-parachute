@@ -107,8 +107,8 @@ main {
 }
 
 .parachuteLogo {
+    width: 100%;
     max-width: 600px;
-    width: 100%
     margin: 0 auto;
 }
 
@@ -138,13 +138,18 @@ main {
     width: 365px;
 }
 
+.blueBox {
+    flex-direction: column;
+}
+
 .blueBox span {
+    max-width: 300px;
     flex-grow: 1;
-    width: 300px;
 }
 
 .blueIcon {
-    height: 150px;
+    max-height: 150px;
+    display: none;
 }
 
 .blueText {
@@ -159,7 +164,8 @@ main {
     width: 400px;
 }
 
-.solidGreenBtn {
+.solidGreenBtn,
+input[type="submit"] {
     background-color: #4eff78;
     border: 2px solid #4eff78;
     font-size: 22px;
@@ -181,7 +187,7 @@ main {
     font-size: 22px;
     text-decoration: none;
     padding: 10px 20px;
-    margin: 10px 20px;
+    margin: 20px 5px;
     color: black;
     border-radius: 30px;
 }
@@ -220,6 +226,81 @@ main {
     font-size: 20px;
 }
 
+.formBox {
+    border-radius: 20px;
+    border: 1px solid #03a7ff;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 650px;
+}
+
+.formBox label {
+    font-size: 18px;
+}
+
+.formInput {
+    padding-left: 10px;
+    border: none;
+    border-bottom: 1px solid #03a7ff;
+    font-size: 20px;
+    margin: 10px;
+    width: 280px;
+}
+
+.formLabelBox {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 290px;
+}
+
+.formLabelBox input[type=text],
+.formStateWrap input,
+.formStateWrap select,
+.formDaySchedule input,
+#onboardTimezone {
+    padding-left: 10px;
+    border: none;
+    border-bottom: 1px solid #03a7ff;
+    font-size: 20px;
+}
+
+#onboardImage {
+    font-size: 16px;
+}
+
+.formRadioButton {
+    margin-left: 10px;
+    color: black;
+}
+
+.formRadioLabel {
+    display: inline;
+    text-align: left;
+}
+
+.formStateWrap {
+    display: inline-flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 280px;
+    border: 1px solid #03a7ff;
+    padding: 10px;
+    margin: 5px;
+}
+
+.formDaySchedule {
+    margin: 10px;
+}
+
+.formDaySchedule label:first-of-type {
+    display: block;
+}
+
+.formDaySchedule input {
+    width: 135px;
+}
+
 /* Media Queries */
 
 footer {
@@ -238,6 +319,13 @@ footer p {
 
 /* Media Queries */
 
+@media (min-width: 400px) {
+    .blueBox {
+        flex-direction: row;
+    }
+
+}
+
 
 @media (min-width: 700px) {
     .stephProfile {
@@ -247,5 +335,17 @@ footer p {
 
     nav {
         display: flex;
+    }
+
+    .blueIcon {
+        display: inline-block;
+    }
+
+    #formConsent {
+        width: 600px;
+    }
+
+    .formDaySchedule label:first-of-type {
+        display: inline;
     }
 }
