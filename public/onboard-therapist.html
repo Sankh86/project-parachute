@@ -45,22 +45,34 @@
 				<p class="faqAnswer">If you have the ability to provide pro bono online therapy services, please complete the form below.</p>
 				<p class="faqAnswer">We will keep all responses confidential and only share your details once we will have a match with a healthcare employee.</p>
 				<p class="faqAnswer">We know that times of uncertainty and chronic stress can exacerbate existing mental health concerns. Please consider supporting this effort and helping those on the front lines of the COVID-19 pandemic.</p>
-				
-				<input type="radio" id="onboardLiscensed" class="formCheckbox" name="onboardLiscenseType" value="Liscensed">
-				<label for="onboardLiscensed">I am fully liscensed</label>
-				<input type="radio" id="onboardProvisional" class="formCheckbox" name="onboardLiscenseType" value="Provisional">
-				<label for="onboardProvisional">I am provisionally liscensed</label>
-				<input type="radio" id="onboardStudent" class="formCheckbox" name="onboardLiscenseType" value="Student">
-				<label for="onboardStudent">I am a student</label>
-
+				<div id="licenseRadioBox">
+					<input type="radio" id="onboardLicensed" class="formCheckbox" name="onboardLicenseType" value="Licensed">
+					<label for="onboardLicensed">I am fully licensed</label>
+					<input type="radio" id="onboardProvisional" class="formCheckbox" name="onboardLicenseType" value="Provisional">
+					<label for="onboardProvisional">I am provisionally licensed</label>
+					<input type="radio" id="onboardStudent" class="formCheckbox" name="onboardLicenseType" value="Student">
+					<label for="onboardStudent">I am a graduate student/intern</label>
+				</div>
 				<p id="studentEmail">
-					Please reach out to this email address to learn about volunteer opportunities with Project Parachute!
+					Please reach out to <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a> to learn about volunteer opportunities with Project Parachute!
+				</p>
+				<p id="provisionalInfo">
+					Please discuss providing pro-bono therapy with your supervisor before signing up to help.
 				</p>
 
 				<form class="formBox" id="onboardForm">
-					<input type="text" placeholder="Full Name" id="onboardName" class="formInput" required>
-					<input type="email" placeholder="Email" id="onboardEmail" class="formInput" required>
-					<input type="tel" placeholder="Phone # (123-456-7890)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="onboardPhoneNumber" class="formInput" required>
+					<span class="formLabelBox">
+						<input type="text" placeholder="Full Name" id="onboardName" required>
+						<p class="formCheckText">required</p>
+					</span>
+					<span class="formLabelBox">
+						<input type="email" placeholder="Email" id="onboardEmail" required>
+						<p class="formCheckText">required</p>
+					</span>
+					<span class="formLabelBox">
+						<input type="tel" placeholder="Phone # (123-456-7890)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="onboardPhoneNumber" maxlength="12" required>
+						<p class="formCheckText" id="formCheckPhone">required</p>
+					</span>
 					<span class="formLabelBox">
 						<label>Upload Profile Image</label>
 						<input type="file" id="onboardImage" accept="image/png, image/jpeg">
@@ -70,15 +82,16 @@
 						<input type="text" placeholder="Enter Here" id="onboardInsurance">
 					</span>
 					<span class="formLabelBox">
-						<label>Which mental health conditions do you specialize in?</label>
+						<label>Which mental health conditions do you work with?</label>
 						<input type="text" placeholder="Enter Here" id="onboardSpecialization" required>
+						<p class="formCheckText">required</p>
 					</span>
 					<span class="formLabelBox" id="supervisorNameBox">
 						<label>What is your supervisor's Name?</label>
-						<input type="text" placeholder="Enter Here" id="onboardSupervisorName" required>
+						<input type="text" placeholder="Enter Here">
 					</span>
 					<span class="formStateWrap">
-						<label>Liscensed State</label>
+						<label>Licensed State</label>
 						<select id="onboardStateA">
 							<option value="">-Select State-</option>
 							<option value="Alabama">Alabama</option>
@@ -133,10 +146,11 @@
 							<option value="Wisconsin">Wisconsin</option>
 							<option value="Wyoming">Wyoming</option>
 						</select>
-						<input type="text" placeholder="Liscense #" id="onboardLiscenseNoA">
+						<input type="text" placeholder="License #" id="onboardLicenseNoA">
+						<p class="formCheckText" id="formCheckStateA"></p>
 					</span>
 					<span class="formStateWrap" id="stateBoxB">
-						<label>Liscensed State</label>
+						<label>Licensed State</label>
 						<select id="onboardStateB">
 							<option value="">-Select State-</option>
 							<option value="Alabama">Alabama</option>
@@ -191,10 +205,11 @@
 							<option value="Wisconsin">Wisconsin</option>
 							<option value="Wyoming">Wyoming</option>
 						</select>
-						<input type="text" placeholder="Liscense #" id="onboardLiscenseNoB">
+						<input type="text" placeholder="License #" id="onboardLicenseNoB">
+						<p class="formCheckText" id="formCheckStateB"></p>
 					</span>
 					<span class="formStateWrap" id="stateBoxC">
-						<label>Liscensed State</label>
+						<label>Licensed State</label>
 						<select id="onboardStateC">
 							<option value="">-Select State-</option>
 							<option value="Alabama">Alabama</option>
@@ -249,19 +264,28 @@
 							<option value="Wisconsin">Wisconsin</option>
 							<option value="Wyoming">Wyoming</option>
 						</select>
-						<input type="text" placeholder="Liscense #" id="onboardLiscenseNoC">
+						<input type="text" placeholder="License #" id="onboardLicenseNoC">
+						<p class="formCheckText" id="formCheckStateC"></p>
 					</span>
 					<div>
-						<p>Weekly Availability</p>
-						<select id="onboardTimezone">
-							<option value="">-Select Timezone-</option>
-							<option value="EST">EST</option>
-							<option value="CST">CST</option>
-							<option value="MST">MST</option>
-							<option value="PST">PST</option>
-							<option value="AKST">AKST</option>
-							<option value="HST">HST</option>
-						</select>
+						<h3>Weekly Availability</h3>
+						<p>Your availability will be used to help frontliners find a therapist that best fits their schedule.  You will reach out to the client to schedule an appointment after we forward you their information.  You have two options for providing availability:</p>
+						<ul>
+							<li>Set aside specific days and times. (i.e., Mondays 12-1 and Wednesdays 8-9) or,</li>
+							<li>List your general availability (i.e., office hours; Mondays 9 – 5, Tuesdays 4 - 8)</li>
+						</ul>
+						<span class="formLabelBoxTz">
+							<select id="onboardTimezone" required>
+								<option value="">-Select Timezone-</option>
+								<option value="EST">EST</option>
+								<option value="CST">CST</option>
+								<option value="MST">MST</option>
+								<option value="PST">PST</option>
+								<option value="AKST">AKST</option>
+								<option value="HST">HST</option>
+							</select>
+							<p class="formCheckText" id="formCheckTimezone">required</p>
+						</span>
 						<div class="formDaySchedule">
 							<label>Mon</label>	
 							<input type="time" id="onboardMonStart">
