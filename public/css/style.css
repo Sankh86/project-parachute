@@ -30,6 +30,12 @@ p {
     font-size: 20px;
 }
 
+li {
+    text-align: left;
+    font-size: 20px;
+    padding: 2.5px;
+}
+
 .centerFlex {
     display: flex;
     justify-content: center;
@@ -230,10 +236,6 @@ input[type="submit"]:disabled {
 
 }
 
-.weServe li {
-    font-size: 20px;
-}
-
 .formBox {
     border-radius: 20px;
     border: 1px solid #03a7ff;
@@ -272,6 +274,7 @@ input[type="submit"]:disabled {
 .formLabelBox input[type=text],
 .formLabelBox input[type=email],
 .formLabelBox input[type=tel],
+textarea,
 .formStateWrap input,
 .formStateWrap select,
 .formDaySchedule input,
