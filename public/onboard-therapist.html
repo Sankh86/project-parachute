@@ -47,7 +47,7 @@
 				<h3 style="text-align: left;">Who is eligible to sign-up?</h3>
 				<ul class="bulletList">
 					<li>Fully licensed therapists</li>
-					<li>Provisionally licensed therapists (please discuss with your supervisor and check with your insurance before signing up)</li>
+					<li>Provisionally licensed therapists (you have a temporary or a training license but are still supervised)</li>
 				</ul>
 				<p style="text-align: left;">Unfortunately, therapists-in-training (graduate students, interns, etc.) are not able to provide services through Project Parachute. If you are interested in other volunteer opportunities, please email us at  <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
 				<h3 style="text-align: left;">Questions? See our <a href = "faq.html">FAQ page</a> or send us an email.</h3>
@@ -57,7 +57,7 @@
 					<input type="radio" id="onboardProvisional" class="formCheckbox" name="onboardLicenseType" value="Provisional">
 					<label for="onboardProvisional">I am provisionally licensed</label>
 				</div>
-				<p id="provisionalInfo">Please discuss providing pro-bono therapy with your supervisor before signing up to help. We also recommend you consult with your liability insurance about being able to conduct pro-bono work.</p>
+				<h3 id="provisionalInfo">Please discuss providing pro-bono therapy with your supervisor before signing up to help. We also recommend you consult with your liability insurance about being able to conduct pro-bono work.</h3>
 
 				<form class="formBox" id="onboardForm">
 					<span class="formLabelBox">
@@ -70,21 +70,25 @@
 					</span>
 					<span class="formLabelBox">
 						<input type="email" placeholder="Email" id="onboardEmail" required>
-						<p class="formCheckText">required</p>
+						<div class="formCheckText">required<p class="formCheckTextExplainer">(will not be shared with clients)</p></div>
 					</span>
 					<span class="formLabelBox">
 						<input type="tel" placeholder="Phone # (123-456-7890)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="onboardPhoneNumber" maxlength="12" required>
-						<p class="formCheckText" id="formCheckPhone">required</p>
+						<div class="formCheckText" id="formCheckPhone">required<p class="formCheckTextExplainer">(will not be shared with clients)</p></div>
 					</span>
 					<span class="formLabelBox" id="supervisorNameBox">
 						<label>What is your supervisor's Name?</label>
 						<input type="text" placeholder="Enter Here" id="onboardSupervisorName">
 					</span>
 					<span class="formLabelBox">
-						<label>What is the name of your practice?</label>
+						<label>What is the name of your practice or place of employment?</label>
 						<input type="text" placeholder="Enter Here" id="onboardNameAdress">
 					</span>
-					<span class="formLabelBox">
+					<span class="formLabelBox relative">
+						<div id="stateQuestion" class="whatsThis">?</div>
+						<div id="stateMessage" class="whatsThisMessage">
+							Although you will be providing therapy via teleheath during COVID-19 crisis, clients may wish to select a therapist in their city and state in case they would like to continue seeing you in person in the future.
+						</div>
 						<label>City and State?</label>
 						<input type="text" placeholder="Los Angeles, CA" id="onboardCityState">
 					</span>
@@ -96,6 +100,9 @@
 						<label>Upload Profile Image</label>
 						<input type="file" id="onboardImage" accept="image/png, image/jpeg">
 					</span>
+					<div class="viewProfileImageBox">
+						<img id="previewImage" src="#" alt="Your Profile Picture" />
+					</div>
 					<span class="formLabelBox">
 						<label>Please provide a brief bio describing conditions you treat, including specialty, type of therapy you do, etc. to display with your profile.</label>
 						<textarea placeholder="Enter Here" id="onboardDescription" rows="4" required></textarea>
@@ -282,13 +289,19 @@
 						<label>Where did you hear about us?</label>
 						<input type="text" placeholder="Enter Here" id="onboardWhereUHear">
 					</span>
-					<div>
+					<div class="relative">
+						<div id="availabilityQuestion" class="whatsThis">?</div>
+						<div id="availabilityMessage" class="whatsThisMessage">
+							Frontliner clients will be able to browse therapists in their state and select one they want to work with. Once we receive a request from a frontliner, we will notify you by email with their information.<br><br>
+							It will be up to you to contact them and set up an appointment. Clients will be notified that the appointment is not confirmed until they hear from you. For the administrative purposes, you can treat the frontliner as another patient in your existing practice. It is completely up to you how many free sessions you offer, how often you see the client, and how long the sessions are. Please communicate your expectations with the client at the beginning of therapy.<br><br>
+							Your profile will remain active on the website until you notify us that you no longer have availability. To deactivate your profile (you can always re-activate later), please send us an email: projectparachute.eleos@gmail.com.
+						</div>
 						<h3>Weekly Availability</h3>
 						<p>Your availability will help frontliners find a therapist that best fits their schedule.</p>
 						<p>You can...</p>
 						<ul class="bulletList">
 							<li>Set aside specific days and times. However, keep in mind you may not get a booking from us for several weeks.</li>
-							<li>Or, list your general availability.  When matched with a frontliner, you will work with them to compatible time.</li>
+							<li>Or list your general availability  (e.g., Mondays 9 – 5, Tuesdays 4-8 pm, Saturdays 8-1). When we match you with a frontliner, you will work with them to find a time that works for both of you.</li>
 						</ul>
 						<span class="formLabelBoxTz">
 							<select id="onboardTimezone" required>
@@ -346,7 +359,7 @@
 						</div>
 					</div>
 					<div id="formConsent" class="formLabelBox">
-						<label>Do you give us permission to share your details on our website?<br>Your email and phone number <span style="font-weight:bold;">will not</span> be visible on your profile.</label>
+						<label>Do you give us permission to share your details on our website?<br>Your email and phone number <p class="bold">will not</p> be visible on your profile.</label>
 						<input type="checkbox" id="onboardConsent" class="formCheckbox">
                         <label for="onboardConsent" id="consentLabel">I Consent</label>
 

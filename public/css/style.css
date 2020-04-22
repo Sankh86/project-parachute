@@ -188,11 +188,12 @@ main {
 .therapistSelect {
     flex-direction: column;
     margin: 150px 10px 100px;
+    align-items: stretch;
 }
 
 .therapistSelect a {
-    max-width: 400px;
     margin: 10px 5px;
+    flex-grow: 1;
 }
 
 .solidGreenBtn,
@@ -266,7 +267,7 @@ input[type="submit"]:disabled {
 .formBox {
     border-radius: 20px;
     border: 1px solid #03a7ff;
-    background-color: #f3f8fa;
+    background-color: #e7f1f5;
     padding: 15px;
     margin: 10px auto;
     max-width: 600px;
@@ -394,9 +395,74 @@ textarea,
     padding-left: 30px;
 }
 
+.formCheckTextExplainer {
+    font-size: 12px;
+    text-align: left;
+    color: black;
+    margin: 0;
+    padding: 0 0 0 20px;
+    display: inline;
+}
+
 #consentLabel {
     margin: 5px auto;
     max-width: 200px;
+}
+
+#onboardTimezone {
+    width: 220px;
+}
+
+#previewImage {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    -o-object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #03a7ff;
+  }
+
+  .bold {
+      padding: 0;
+      margin: 0;
+      font-weight: bold;
+      display: inline;
+  }
+
+  .relative {
+      position: relative;
+  }
+
+  .whatsThis {
+      background-color: #03a7ff;
+      font-size: 18px;
+      color: white;
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 0;
+      right: 20px;
+      margin: 0;
+      cursor: help;
+      font-weight: bold;
+  }
+
+  .whatsThisMessage {
+    background-color: #03a7ff;
+    font-size: 16px;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    margin: 0;
+    z-index: 1000;
+    padding: 10px;
+    text-align: left;
+
 }
 
 /* Media Queries */
@@ -439,10 +505,6 @@ footer p {
         display: inline-block;
     }
 
-    #formConsent {
-        width: 600px;
-    }
-
     .formDaySchedule label:first-of-type {
         display: inline;
     }
@@ -453,6 +515,10 @@ footer p {
 
     .therapistSelect {
         flex-direction: row;
+    }
+
+    .therapistSelect a {
+        max-width: 400px;
     }
 
     /* .formBox span {

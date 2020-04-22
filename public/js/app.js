@@ -25,6 +25,68 @@ $('input:radio[name="onboardLicenseType"]').change(function() {
 
     });
 
+
+
+
+//  ********** Preview Profile Image **********     
+$('#previewImage').hide();
+$("#onboardImage").change(function() {
+    if (this.files && this.files[0]) {
+      
+        var reader = new FileReader();
+      
+      reader.onload = function(e) {
+        $('#previewImage').attr('src', e.target.result);
+      }
+      
+      reader.readAsDataURL(this.files[0]); // convert to base64 string
+      $('#previewImage').show();
+    } else {
+        $('#previewImage').hide();
+    }
+  });
+
+//  ********** Form Hover Messages **********     
+$('#stateMessage').hide();  
+$('#stateQuestion').hover(
+    function() {
+      $('#stateMessage').show();
+    }, function() {
+        $('#stateMessage').hide();
+    }
+);
+
+$('#availabilityMessage').hide();  
+$('#availabilityQuestion').hover(
+    function() {
+      $('#availabilityMessage').show();
+    }, function() {
+        $('#availabilityMessage').hide();
+    }
+);
+
+
+
+// function readURL(input) {
+//     if (input.files && input.files[0]) {
+      
+//         var reader = new FileReader();
+      
+//       reader.onload = function(e) {
+//         $('#previewImage').attr('src', e.target.result);
+//       }
+      
+//       reader.readAsDataURL(input.files[0]); // convert to base64 string
+//     }
+//   }
+  
+
+
+  $("#onboardImage").change(function() {
+    readURL(this);
+  });
+
+
 //  ********** Form Logic **********
 
 var checkName = false;
