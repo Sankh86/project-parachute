@@ -59,6 +59,7 @@ header {
     color: white;
     position: fixed;
     width: 100%;
+    z-index: 100;
 
 }
 
@@ -83,7 +84,7 @@ nav {
     display: none;
     align-items: center;
     margin-left: 50px;
-    z-index: 1000;
+    z-index: 110;
 }
 
 .navItem {
@@ -459,7 +460,7 @@ textarea,
     top: 24px;
     right: 20px;
     margin: 0;
-    z-index: 1000;
+    z-index: 90;
     padding: 10px;
     text-align: left;
 
@@ -479,6 +480,39 @@ footer p {
     padding: 5px;
     font-size: 12px;
     margin: 0;
+}
+
+#confirmSubmitFrame {
+    z-index: 150;
+    background-color: #e7f1f5;
+    border: 3px solid #05143f;
+    max-width: 350px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 40%;
+    left: calc(50% - 175px);
+}
+
+#confirmSubmitFrame div {
+    padding: 20px;
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+#confirmSubmitFrame div * {
+    margin: 20px;
+}
+
+#confirmSubmitBtn {
+    width: 200px;
 }
 
 /* Media Queries */
