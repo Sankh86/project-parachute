@@ -78,6 +78,7 @@ header {
 .topMenuFrame {
     align-items: center;
     margin: 0 auto;
+    z-index: 100;
 }
 
 nav {
@@ -211,6 +212,7 @@ input[type="submit"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 input[type="submit"]:disabled {
@@ -242,6 +244,9 @@ input[type="submit"]:disabled {
     background-color: #4eff78;
 }
 
+
+/* FAQ */
+
 .faq {
     display: inline-block;
 }
@@ -251,6 +256,8 @@ input[type="submit"]:disabled {
     padding: 5px;
     margin: 10px;
 }
+
+
 
 .faqQuestion {
     margin: 10px 5px 0;
@@ -264,6 +271,8 @@ input[type="submit"]:disabled {
     text-align: left;
 
 }
+
+/* Onboard Therapist */
 
 .formBox {
     border-radius: 20px;
@@ -316,7 +325,8 @@ textarea,
 .formStateWrap input,
 .formStateWrap select,
 .formDaySchedule input,
-#onboardTimezone {
+#onboardTimezone,
+#queryState {
     padding-left: 10px;
     border: none;
     border-bottom: 1px solid #03a7ff;
@@ -448,6 +458,7 @@ textarea,
       margin: 0;
       cursor: help;
       font-weight: bold;
+      z-index: 90;
   }
 
   .whatsThisMessage {
@@ -465,6 +476,23 @@ textarea,
     text-align: left;
 
 }
+
+/* Member Search */
+
+.memberWrap {
+    margin: 30px 20px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid #67dcfc;
+}
+
+
+#agreeTOS,
+#queryTherapists {
+    max-width: 400px;
+    margin: 150px auto 30px;
+}
+
 
 /* Media Queries */
 

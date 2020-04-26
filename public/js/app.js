@@ -86,12 +86,16 @@ $('#onboardEmail').change(function() {
 });
 
 var checkPhoneNumber = false;
-$('#onboardEmail').change(function() {
+$('#onboardPhoneNumber').change(function() {
     if ($(this).val() !== "") {
         checkPhoneNumber = true;
     } else {
         checkPhoneNumber = false;
     }
+});
+
+$('#onboardPhoneNumber').keyup(function(){
+    $(this).val($(this).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3'))
 });
 
 var checkDescription = false;
@@ -250,7 +254,6 @@ $('select').change(function() {
     }
 });
 
-
 //  ********** Confirm Submit Button **********
 
 $('#confirmSubmitFrame').hide();
@@ -260,132 +263,169 @@ $( "#confirmSubmitBtn" ).click(function() {
     $('#confirmSubmitFrame').hide();
     $('#confirmSubmitOnboarding').hide();
     $('#confirmSubmitComplete').hide();
-  });
+});
 
 
 //  ********** Onboard Therapist **********
-
 $('#onboardForm').submit(function(e) {
     e.preventDefault();
-    $('#confirmSubmitFrame').show();
-    $('#confirmSubmitOnboarding').show();
     const onboardEmail = $('#onboardEmail').val();
-
     auth.createUserWithEmailAndPassword(onboardEmail, "project-parachute").then(cred => {
-        const uid = auth.currentUser.uid;
-
-        //  ********** Upload Profile Picture **********
-        let onboardPicture = ""
-        if ($('#onboardImage')[0].files[0] !== undefined) {
-            const file = $('#onboardImage')[0].files[0];
-            const extension = file.name.substring(file.name.lastIndexOf('.') + 1);
-            const storageRef = storage.ref(`therapistPhotos/${uid}.${extension}`);
-            onboardPicture = `therapistPhotos/${uid}_680x680.${extension}`
-            storageRef.put(file)
+        console.log("account created")
+        uploadTherapistData();
+    }).catch(err => {
+        if (err.code === "auth/email-already-in-use") {
+            auth.signInWithEmailAndPassword(onboardEmail, "project-parachute").then(cred => {
+                console.log("account logged in")
+                uploadTherapistData();
+            });
+        } else {
+            $('#confirmSubmitOnboarding').html(err.code);
+            console.log(err.code)
         }
-            
-        const onboardName = $('#onboardName').val();
-        const onboardPhoneNumber = $('#onboardPhoneNumber').val();
-        const onboardSupervisorName = $('#onboardSupervisorName').val();
-        const onboardNameAddress = $('#onboardNameAddress').val();
-        const onboardCityState = $('#onboardCityState').val();
-        const onboardLicenseType = $('#onboardLicenseType').val();
-        const onboardInsurance = $('#onboardInsurance').val();
-        const onboardDescription = $('#onboardDescription').val();
-        
-        const onboardStateA = $('#onboardStateA').val();
-        const onboardLicenseNoA = $('#onboardLicenseNoA').val();
-        const onboardStateB = $('#onboardStateB').val();
-        const onboardLicenseNoB = $('#onboardLicenseNoB').val();
-        const onboardStateC = $('#onboardStateC').val();
-        const onboardLicenseNoC = $('#onboardLicenseNoC').val();
-        
-        const onboardTimezone = $('#onboardTimezone').val();
-        
-        const onboardMonStart = $('#onboardMonStart').val();
-        const onboardMonEnd = $('#onboardMonEnd').val();
-        const onboardTueStart = $('#onboardTueStart').val();
-        const onboardTueEnd = $('#onboardTueEnd').val();
-        const onboardWedStart = $('#onboardWedStart').val();
-        const onboardWedEnd = $('#onboardWedEnd').val();
-        const onboardThuStart = $('#onboardThuStart').val();
-        const onboardThuEnd = $('#onboardThuEnd').val();
-        const onboardFriStart = $('#onboardFriStart').val();
-        const onboardFriEnd = $('#onboardFriEnd').val();
-        const onboardSatStart = $('#onboardSatStart').val();
-        const onboardSatEnd = $('#onboardSatEnd').val();
-        const onboardSunStart = $('#onboardSunStart').val();
-        const onboardSunEnd = $('#onboardSunEnd').val();
-    
-        const onboardConsent = $('#onboardConsent').prop("checked") == true;
-        const onboardCurrentTime = new Date().toISOString();
-
-        const fbOnboard =  `{
-            "name": "${onboardName}",
-            "email": "${onboardEmail}",
-            "phone": "${onboardPhoneNumber}",
-            "supervisorName": "${onboardSupervisorName}",
-            "practiceName": "${onboardNameAddress}",
-            "cityState": "${onboardCityState}",
-            "licenseType": "${onboardLicenseType}",
-            "insurance": "${onboardInsurance}",
-            "picture": "${onboardPicture}",
-            "description": "${onboardDescription}",
-            "licenseStateA": "${onboardStateA}",
-            "licenseNoA": "${onboardLicenseNoA}",
-            "licenseStateB": "${onboardStateB}",
-            "licenseNoB": "${onboardLicenseNoB}",
-            "licenseStateC": "${onboardStateC}",
-            "licenseNoC": "${onboardLicenseNoC}",
-            "timeZone": "${onboardTimezone}",
-            "Availability": {
-                "mon": {
-                    "startTime": "${onboardMonStart}",
-                    "endTime": "${onboardMonEnd}"
-                },
-                "tue": {
-                    "startTime": "${onboardTueStart}",
-                    "endTime": "${onboardTueEnd}"
-                },
-                "wed": {
-                    "startTime": "${onboardWedStart}",
-                    "endTime": "${onboardWedEnd}"
-                },
-                "thu": {
-                    "startTime": "${onboardThuStart}",
-                    "endTime": "${onboardThuEnd}"
-                },
-                "fri": {
-                    "startTime": "${onboardFriStart}",
-                    "endTime": "${onboardFriEnd}"
-                },
-                "sat": {
-                    "startTime": "${onboardSatStart}",
-                    "endTime": "${onboardSatEnd}"
-                },
-                "sun": {
-                    "startTime": "${onboardSunStart}",
-                    "endTime": "${onboardSunEnd}"
-                }
-            },
-            "exposeInfo": ${onboardConsent},
-            "isVerified": false,
-            "createdDate": "${onboardCurrentTime}"
-        }`
-
-        const update = JSON.parse(fbOnboard);
-        db.collection("Therapists").doc(uid).set(update).then(() => {
-            $('#onboardForm').trigger("reset");
-            checkConsent = false;
-            $("#onboardSubmit").attr("disabled", true);
-    
-            auth.signOut();
-
-            $('#confirmSubmitOnboarding').hide();
-            $('#confirmSubmitComplete').show();
-        });
     });
 });
+
+function cleanString(string) {
+    let str = "";
+    if(string.length > 0) {
+        str = JSON.stringify(string);
+        str = str.substring(1);
+        str = str.substring(0, str.length - 1);
+        str = str.replace(/[\\]/g, '\\\\')
+        .replace(/[\"]/g, '\\\"')
+        .replace(/[\/]/g, '\\/')
+        .replace(/[\b]/g, '\\b')
+        .replace(/[\f]/g, '\\f')
+        .replace(/[\n]/g, '\\n')
+        .replace(/[\r]/g, '\\r')
+        .replace(/[\t]/g, '\\t');
+    }
+    return str;
+}
+
+
+//  ********** Upload Therapist Data Function **********
+function uploadTherapistData() {
+    $('#confirmSubmitFrame').show();
+    $('#confirmSubmitOnboarding').show();
+    const uid = auth.currentUser.uid
+    let onboardPicture = ""
+    if ($('#onboardImage')[0].files[0] !== undefined) {
+        const file = $('#onboardImage')[0].files[0];
+        const extension = file.name.substring(file.name.lastIndexOf('.') + 1);
+        const storageRef = storage.ref(`therapistPhotos/${uid}.${extension}`);
+        onboardPicture = `therapistPhotos/${uid}_680x680.${extension}`
+        storageRef.put(file)
+    }
+        
+    const onboardName = cleanString($('#onboardName').val());
+    const onboardPhoneNumber = $('#onboardPhoneNumber').val();
+    const onboardSupervisorName = cleanString($('#onboardSupervisorName').val());
+    const onboardNameAddress = cleanString($('#onboardNameAddress').val());
+    const onboardCityState = cleanString($('#onboardCityState').val());
+    const onboardLicenseType = cleanString($('#onboardLicenseType').val());
+    const onboardInsurance = cleanString($('#onboardInsurance').val());
+    const onboardDescription = cleanString($('#onboardDescription').val());
+    
+    const onboardStateA = $('#onboardStateA').val();
+    const onboardLicenseNoA = $('#onboardLicenseNoA').val();
+    const onboardStateB = $('#onboardStateB').val();
+    const onboardLicenseNoB = $('#onboardLicenseNoB').val();
+    const onboardStateC = $('#onboardStateC').val();
+    const onboardLicenseNoC = $('#onboardLicenseNoC').val();
+    
+    const onboardTimezone = $('#onboardTimezone').val();
+    
+    const onboardMonStart = $('#onboardMonStart').val();
+    const onboardMonEnd = $('#onboardMonEnd').val();
+    const onboardTueStart = $('#onboardTueStart').val();
+    const onboardTueEnd = $('#onboardTueEnd').val();
+    const onboardWedStart = $('#onboardWedStart').val();
+    const onboardWedEnd = $('#onboardWedEnd').val();
+    const onboardThuStart = $('#onboardThuStart').val();
+    const onboardThuEnd = $('#onboardThuEnd').val();
+    const onboardFriStart = $('#onboardFriStart').val();
+    const onboardFriEnd = $('#onboardFriEnd').val();
+    const onboardSatStart = $('#onboardSatStart').val();
+    const onboardSatEnd = $('#onboardSatEnd').val();
+    const onboardSunStart = $('#onboardSunStart').val();
+    const onboardSunEnd = $('#onboardSunEnd').val();
+
+    const onboardConsent = $('#onboardConsent').prop("checked") == true;
+    const onboardCurrentTime = new Date().toISOString();
+
+    const fbOnboard =  `{
+        "name": "${onboardName}",
+        "email": "${onboardEmail}",
+        "phone": "${onboardPhoneNumber}",
+        "supervisorName": "${onboardSupervisorName}",
+        "practiceName": "${onboardNameAddress}",
+        "cityState": "${onboardCityState}",
+        "licenseType": "${onboardLicenseType}",
+        "insurance": "${onboardInsurance}",
+        "picture": "${onboardPicture}",
+        "description": "${onboardDescription}",
+        "licenseStateA": "${onboardStateA}",
+        "licenseNoA": "${onboardLicenseNoA}",
+        "licenseStateB": "${onboardStateB}",
+        "licenseNoB": "${onboardLicenseNoB}",
+        "licenseStateC": "${onboardStateC}",
+        "licenseNoC": "${onboardLicenseNoC}",
+        "timeZone": "${onboardTimezone}",
+        "Availability": {
+            "mon": {
+                "startTime": "${onboardMonStart}",
+                "endTime": "${onboardMonEnd}"
+            },
+            "tue": {
+                "startTime": "${onboardTueStart}",
+                "endTime": "${onboardTueEnd}"
+            },
+            "wed": {
+                "startTime": "${onboardWedStart}",
+                "endTime": "${onboardWedEnd}"
+            },
+            "thu": {
+                "startTime": "${onboardThuStart}",
+                "endTime": "${onboardThuEnd}"
+            },
+            "fri": {
+                "startTime": "${onboardFriStart}",
+                "endTime": "${onboardFriEnd}"
+            },
+            "sat": {
+                "startTime": "${onboardSatStart}",
+                "endTime": "${onboardSatEnd}"
+            },
+            "sun": {
+                "startTime": "${onboardSunStart}",
+                "endTime": "${onboardSunEnd}"
+            }
+        },
+        "exposeInfo": ${onboardConsent},
+        "isVerified": false,
+        "createdDate": "${onboardCurrentTime}"
+    }`
+
+    const update = JSON.parse(fbOnboard);
+    db.collection("Therapists").doc(uid).set(update).then(() => {
+        $('#onboardForm').trigger("reset");
+        checkConsent = false;
+        $('#previewImage').hide();
+        $("#onboardSubmit").attr("disabled", true);
+
+        auth.signOut().then(() => {console.log('Signed Out')});
+
+        $('#confirmSubmitOnboarding').hide();
+        $('#confirmSubmitComplete').show();
+    }).catch(err => {
+        $('#confirmSubmitOnboarding').html(err.code);
+    });
+}
+
+
+
 
 
 
@@ -393,75 +433,6 @@ $('#onboardForm').submit(function(e) {
 //storage.ref('therapistPhotos/parachute-logo.png').getDownloadURL().then(function(url) {console.log(url)});
 
 
-
-
-
-
-
-
-
 // storageRef.getDownloadURL().then(function(url) {
                 
 //     onboardPicture = url
-
-
-
-
-
-// 'use strict';
-
-// const functions = require('firebase-functions');
-// const admin = require('firebase-admin');
-// const nodemailer = require('nodemailer');
-
-// //to make it work you need gmail account
-// const gmailEmail = functions.config().gmail.login;
-// const gmailPassword = functions.config().gmail.pass;
-
-// admin.initializeApp();
-
-// //creating function for sending emails
-// var goMail = function (message) {
-
-// //transporter is a way to send your emails
-//     const transporter = nodemailer.createTransport({
-//         service: 'gmail',
-//         auth: {
-//             user: gmailEmail,
-//             pass: gmailPassword
-//         }
-//     });
-
-//     // setup email data with unicode symbols
-//     //this is how your email are going to look like
-//     const mailOptions = {
-//         from: gmailEmail, // sender address
-//         to: 'salesdepartment@youcompany.com', // list of receivers
-//         subject: 'Hello ✔', // Subject line
-//         text: '!' + message, // plain text body
-//         html: '!' + message // html body
-//     };
-
-//     //this is callback function to return status to firebase console
-//     const getDeliveryStatus = function (error, info) {
-//         if (error) {
-//             return console.log(error);
-//         }
-//         console.log('Message sent: %s', info.messageId);
-//         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-//     };
-
-//     //call of this function send an email, and return status
-//     transporter.sendMail(mailOptions, getDeliveryStatus);
-// };
-
-// //.onDataAdded is watches for changes in database
-// exports.onDataAdded = functions.database.ref('/emails/{sessionId}').onCreate(function (snap, context) {
-
-//     //here we catch a new data, added to firebase database, it stored in a snap variable
-//     const createdData = snap.val();
-//     var text = createdData.mail;
-
-//     //here we send new data using function for sending emails
-//     goMail(text);
-// });
