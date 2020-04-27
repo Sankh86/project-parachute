@@ -50,16 +50,16 @@
 					
 					<btn class="solidGreenBtn" id="agreeTOS">I Agree to Terms of Service</btn>
 				</section>
-				<section class="memberWrap">
-					<h3 style="text-align: left;">Thank you for all the work and struggles.</h3>
-					<h3 style="text-align: left;">Frontline health-care worker is someone who:</h3>
-					<ul class="bulletList">
-						<li>Works in a face-to-face healthcare setting where they may or may not have direct contact and/or care for someone with COVID-19. This includes healthcare workers and also admin staff (e.g. check in), cleaners, cafeteria workers, etc.</li>
-						<li>Works in a face-to-face public health setting (with homeless individuals, at COVID testing centers) as someone who is promoting screening, testing, and care for those with COVID-19.</li>
-						<li>Provides mental health services to the frontline as part of their job in a healthcare setting (not exclusively over telehealth).</li>
-					</ul>
-					<h3 style="text-align: left;">Do you believe you qualify for our services for frontline health-care workers according to the definition above?</h3>
-					<div>
+				<section id="questionnaire" class="memberWrap">
+					<div id="frontlinerGreeter">
+						<h3 style="text-align: left;">Thank you for all the work and struggles.</h3>
+						<h3 style="text-align: left;">Frontline health-care worker is someone who:</h3>
+						<ul class="bulletList">
+							<li>Works in a face-to-face healthcare setting where they may or may not have direct contact and/or care for someone with COVID-19. This includes healthcare workers and also admin staff (e.g. check in), cleaners, cafeteria workers, etc.</li>
+							<li>Works in a face-to-face public health setting (with homeless individuals, at COVID testing centers) as someone who is promoting screening, testing, and care for those with COVID-19.</li>
+							<li>Provides mental health services to the frontline as part of their job in a healthcare setting (not exclusively over telehealth).</li>
+						</ul>
+						<h3 style="text-align: left;">Do you believe you qualify for our services for frontline health-care workers according to the definition above?</h3>
 						<input type="radio" id="isFrontliner" class="formCheckbox" name="frontlinerConfirm" value="Yes">
 						<label for="isFrontliner">Yes</label>
 						<input type="radio" id="isNotFrontliner" class="formCheckbox" name="frontlinerConfirm" value="No">
@@ -70,8 +70,8 @@
 						<p style="text-align: left;">*Crisis Text Line*</p>
 						<p style="text-align: left;">*Open Path Collective*</p>
 					</div>
-					<h3 style="text-align: left;">Do you currently have an individual therapist?</h3>
-					<div>
+					<div id="questionTherapist">
+						<h3 style="text-align: left;">Do you currently have an individual therapist?</h3>
 						<input type="radio" id="hasTherapist" class="formCheckbox" name="therapistConfirm" value="Yes">
 						<label for="hasTherapist">Yes</label>
 						<input type="radio" id="hasNoTherapist" class="formCheckbox" name="therapistConfirm" value="No">
@@ -80,415 +80,68 @@
 					<div id="hasTherapistMessage">
 						<p style="text-align: left;">Thank you for your interest in receiving services through Project Parachute. At this time, we aim to provide services to those that do not currently have therapeutic care. If you believe this decision has been made in error or you have any further questions, please email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
 					</div>
-					<p style="text-align: left;">THERAPIST LOCATION. Due to licensing board regulations, therapists have to be licensed in the state you reside in to provide telehealth services.</p>
-					<p style="text-align: left;">THERAPIST AVAILABILITY. Please select a therapist with availability that most closely matches yours. The therapist will contact you directly to schedule an appointment.</p>
-					<p style="text-align: left;">INSURANCE. All therapists on our site have agreed to provide pro-bono services during the COVID-19 pandemic. However, you may want to select a therapist that takes your insurance in case you want to continue seeing them long-term</p>
-					<h3 style="text-align: left;">Please select the state where you currently reside to see available therapists and submit your request.</h3>
-					<select id="queryState">
-						<option value="">-Select State-</option>
-						<option value="Alabama">Alabama</option>
-						<option value="Alaska">Alaska</option>
-						<option value="Arizona">Arizona</option>
-						<option value="Arkansas">Arkansas</option>
-						<option value="California">California</option>
-						<option value="Colorado">Colorado</option>
-						<option value="Connecticut">Connecticut</option>
-						<option value="Delaware">Delaware</option>
-						<option value="Florida">Florida</option>
-						<option value="Georgia">Georgia</option>
-						<option value="Hawaii">Hawaii</option>
-						<option value="Idaho">Idaho</option>
-						<option value="Illinois">Illinois</option>
-						<option value="Indiana">Indiana</option>
-						<option value="Iowa">Iowa</option>
-						<option value="Kansas">Kansas</option>
-						<option value="Kentucky">Kentucky</option>
-						<option value="Louisiana">Louisiana</option>
-						<option value="Maine">Maine</option>
-						<option value="Maryland">Maryland</option>
-						<option value="Massachusetts">Massachusetts</option>
-						<option value="Michigan">Michigan</option>
-						<option value="Minnesota">Minnesota</option>
-						<option value="Mississippi">Mississippi</option>
-						<option value="Missouri">Missouri</option>
-						<option value="Montana">Montana</option>
-						<option value="Nebraska">Nebraska</option>
-						<option value="Nevada">Nevada</option>
-						<option value="New Hampshire">New Hampshire</option>
-						<option value="New Jersey">New Jersey</option>
-						<option value="New Mexico">New Mexico</option>
-						<option value="New York">New York</option>
-						<option value="North Carolina">North Carolina</option>
-						<option value="North Dakota">North Dakota</option>
-						<option value="Ohio">Ohio</option>
-						<option value="Oklahoma">Oklahoma</option>
-						<option value="Oregon">Oregon</option>
-						<option value="Pennsylvania">Pennsylvania</option>
-						<option value="Rhode Island">Rhode Island</option>
-						<option value="South Carolina">South Carolina</option>
-						<option value="South Dakota">South Dakota</option>
-						<option value="Tennessee">Tennessee</option>
-						<option value="Texas">Texas</option>
-						<option value="Utah">Utah</option>
-						<option value="Vermont">Vermont</option>
-						<option value="Virginia">Virginia</option>
-						<option value="Washington">Washington</option>
-						<option value="Washington DC">Washington DC</option>
-						<option value="West Virginia">West Virginia</option>
-						<option value="Wisconsin">Wisconsin</option>
-						<option value="Wyoming">Wyoming</option>
-					</select>
-					<btn class="solidGreenBtn" id="queryTherapists">Find Therapists</btn>
+					<div id="therapistQueryBox">
+						<p style="text-align: left;">THERAPIST LOCATION. Due to licensing board regulations, therapists have to be licensed in the state you reside in to provide telehealth services.</p>
+						<p style="text-align: left;">THERAPIST AVAILABILITY. Please select a therapist with availability that most closely matches yours. The therapist will contact you directly to schedule an appointment.</p>
+						<p style="text-align: left;">INSURANCE. All therapists on our site have agreed to provide pro-bono services during the COVID-19 pandemic. However, you may want to select a therapist that takes your insurance in case you want to continue seeing them long-term</p>
+						<h3 style="text-align: left;">Please select the state where you currently reside to see available therapists and submit your request.</h3>
+						<select id="queryState">
+							<option value="">-Select State-</option>
+							<option value="Alabama">Alabama</option>
+							<option value="Alaska">Alaska</option>
+							<option value="Arizona">Arizona</option>
+							<option value="Arkansas">Arkansas</option>
+							<option value="California">California</option>
+							<option value="Colorado">Colorado</option>
+							<option value="Connecticut">Connecticut</option>
+							<option value="Delaware">Delaware</option>
+							<option value="Florida">Florida</option>
+							<option value="Georgia">Georgia</option>
+							<option value="Hawaii">Hawaii</option>
+							<option value="Idaho">Idaho</option>
+							<option value="Illinois">Illinois</option>
+							<option value="Indiana">Indiana</option>
+							<option value="Iowa">Iowa</option>
+							<option value="Kansas">Kansas</option>
+							<option value="Kentucky">Kentucky</option>
+							<option value="Louisiana">Louisiana</option>
+							<option value="Maine">Maine</option>
+							<option value="Maryland">Maryland</option>
+							<option value="Massachusetts">Massachusetts</option>
+							<option value="Michigan">Michigan</option>
+							<option value="Minnesota">Minnesota</option>
+							<option value="Mississippi">Mississippi</option>
+							<option value="Missouri">Missouri</option>
+							<option value="Montana">Montana</option>
+							<option value="Nebraska">Nebraska</option>
+							<option value="Nevada">Nevada</option>
+							<option value="New Hampshire">New Hampshire</option>
+							<option value="New Jersey">New Jersey</option>
+							<option value="New Mexico">New Mexico</option>
+							<option value="New York">New York</option>
+							<option value="North Carolina">North Carolina</option>
+							<option value="North Dakota">North Dakota</option>
+							<option value="Ohio">Ohio</option>
+							<option value="Oklahoma">Oklahoma</option>
+							<option value="Oregon">Oregon</option>
+							<option value="Pennsylvania">Pennsylvania</option>
+							<option value="Rhode Island">Rhode Island</option>
+							<option value="South Carolina">South Carolina</option>
+							<option value="South Dakota">South Dakota</option>
+							<option value="Tennessee">Tennessee</option>
+							<option value="Texas">Texas</option>
+							<option value="Utah">Utah</option>
+							<option value="Vermont">Vermont</option>
+							<option value="Virginia">Virginia</option>
+							<option value="Washington">Washington</option>
+							<option value="Washington DC">Washington DC</option>
+							<option value="West Virginia">West Virginia</option>
+							<option value="Wisconsin">Wisconsin</option>
+							<option value="Wyoming">Wyoming</option>
+						</select>
+						<btn class="solidGreenBtn" id="queryTherapists">Find Therapists</btn>
+					</div>
 				</section>
-
-
-
-
-
-
-
-
-
-
-				<!-- <h3 style="text-align: left;">We are looking for local community and private practice therapists who would like to support medical staff in the hospitals working on the front lines of the COVID-19 pandemic.</h3>
-
-				<p style="text-align: left;">We know that times of uncertainty and chronic stress can exacerbate existing mental health concerns. Please consider supporting this effort. If you have the ability to provide pro bono online therapy services, please complete the form below.</p>
-				<p style="text-align: left;">Project Parachute provides a matching service only. Therapists are expected to have a valid license in the state in which they practice (or practice under a licensed supervisor), their own liability insurance, and their own consent forms.  Eleos can provide a HIPAA compliant server for teletherapy (<a href="https://www.eleos.health/product">click here</a>).</p>
-				<h3 style="text-align: left;">Who is eligible to sign-up?</h3>
-				<ul class="bulletList">
-					<li>Fully licensed therapists</li>
-					<li>Provisionally licensed therapists (you have a temporary or a training license but are still supervised)</li>
-				</ul>
-				<p style="text-align: left;">Unfortunately, therapists-in-training (graduate students, interns, etc.) are not able to provide services through Project Parachute. If you are interested in other volunteer opportunities, please email us at  <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
-				<h3 style="text-align: left;">Questions? See our <a href = "faq.html">FAQ page</a> or send us an email.</h3>
-				<div id="licenseRadioBox">
-					<input type="radio" id="onboardLicensed" class="formCheckbox" name="onboardLicenseType" value="Licensed">
-					<label for="onboardLicensed">I am fully licensed</label>
-					<input type="radio" id="onboardProvisional" class="formCheckbox" name="onboardLicenseType" value="Provisional">
-					<label for="onboardProvisional">I am provisionally licensed</label>
-				</div>
-				<h3 id="provisionalInfo">Please discuss providing pro-bono therapy with your supervisor before signing up to help. We also recommend you consult with your liability insurance about being able to conduct pro-bono work.</h3>
-
-				<form class="formBox" id="onboardForm">
-					<span class="formLabelBox">
-						<input type="text" placeholder="Full Name" id="onboardName" maxlength="50" required>
-						<p class="formCheckText">required</p>
-					</span>
-					<span class="formLabelBox">
-						<label>Suffix</label>
-						<input type="text" placeholder="LCSW, LPC, PhD, etc." id="onboardLicenseType" maxlength="50">
-					</span>
-					<span class="formLabelBox">
-						<input type="email" placeholder="Email" id="onboardEmail" maxlength="50" required>
-						<div class="formCheckText">required<p class="formCheckTextExplainer">(will not be shared with clients)</p></div>
-					</span>
-					<span class="formLabelBox">
-						<input type="tel" placeholder="Phone # (123-456-7890)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="onboardPhoneNumber" maxlength="12" required>
-						<div class="formCheckText" id="formCheckPhone">required<p class="formCheckTextExplainer">(will not be shared with clients)</p></div>
-					</span>
-					<span class="formLabelBox" id="supervisorNameBox">
-						<label>What is your supervisor's Name?</label>
-						<input type="text" placeholder="Enter Here" id="onboardSupervisorName" maxlength="50">
-					</span>
-					<span class="formLabelBox">
-						<label>What is the name of your practice or place of employment?</label>
-						<input type="text" placeholder="Enter Here" id="onboardNameAdress" maxlength="50">
-					</span>
-					<span class="formLabelBox relative">
-						<div id="stateQuestion" class="whatsThis">?</div>
-						<div id="stateMessage" class="whatsThisMessage">
-							Although you will be providing therapy via teleheath during COVID-19 crisis, clients may wish to select a therapist in their city and state in case they would like to continue seeing you in person in the future.
-						</div>
-						<label>City and State?</label>
-						<input type="text" placeholder="Los Angeles, CA" id="onboardCityState" maxlength="50">
-					</span>
-					<span class="formLabelBox">
-						<label>If in network with insurance providers, which ones?</label>
-						<input type="text" placeholder="Enter Here" id="onboardInsurance" maxlength="100">
-					</span>
-					<span class="formLabelBox">
-						<label>Upload Profile Image</label>
-						<input type="file" id="onboardImage" accept="image/png, image/jpeg">
-					</span>
-					<div class="viewProfileImageBox">
-						<img id="previewImage" src="#" alt="Your Profile Picture" />
-					</div>
-					<span class="formLabelBox">
-						<label>Please provide a brief bio describing conditions you treat, including specialty, type of therapy you do, etc. to display with your profile.</label>
-						<textarea placeholder="Enter Here" id="onboardDescription" rows="4" maxlength="1800" required></textarea>
-						<p class="formCheckText">required</p>
-					</span>
-					<span class="formStateWrap">
-						<label>License State</label>
-						<select id="onboardStateA">
-							<option value="">-Select State-</option>
-							<option value="Alabama">Alabama</option>
-							<option value="Alaska">Alaska</option>
-							<option value="Arizona">Arizona</option>
-							<option value="Arkansas">Arkansas</option>
-							<option value="California">California</option>
-							<option value="Colorado">Colorado</option>
-							<option value="Connecticut">Connecticut</option>
-							<option value="Delaware">Delaware</option>
-							<option value="Florida">Florida</option>
-							<option value="Georgia">Georgia</option>
-							<option value="Hawaii">Hawaii</option>
-							<option value="Idaho">Idaho</option>
-							<option value="Illinois">Illinois</option>
-							<option value="Indiana">Indiana</option>
-							<option value="Iowa">Iowa</option>
-							<option value="Kansas">Kansas</option>
-							<option value="Kentucky">Kentucky</option>
-							<option value="Louisiana">Louisiana</option>
-							<option value="Maine">Maine</option>
-							<option value="Maryland">Maryland</option>
-							<option value="Massachusetts">Massachusetts</option>
-							<option value="Michigan">Michigan</option>
-							<option value="Minnesota">Minnesota</option>
-							<option value="Mississippi">Mississippi</option>
-							<option value="Missouri">Missouri</option>
-							<option value="Montana">Montana</option>
-							<option value="Nebraska">Nebraska</option>
-							<option value="Nevada">Nevada</option>
-							<option value="New Hampshire">New Hampshire</option>
-							<option value="New Jersey">New Jersey</option>
-							<option value="New Mexico">New Mexico</option>
-							<option value="New York">New York</option>
-							<option value="North Carolina">North Carolina</option>
-							<option value="North Dakota">North Dakota</option>
-							<option value="Ohio">Ohio</option>
-							<option value="Oklahoma">Oklahoma</option>
-							<option value="Oregon">Oregon</option>
-							<option value="Pennsylvania">Pennsylvania</option>
-							<option value="Rhode Island">Rhode Island</option>
-							<option value="South Carolina">South Carolina</option>
-							<option value="South Dakota">South Dakota</option>
-							<option value="Tennessee">Tennessee</option>
-							<option value="Texas">Texas</option>
-							<option value="Utah">Utah</option>
-							<option value="Vermont">Vermont</option>
-							<option value="Virginia">Virginia</option>
-							<option value="Washington">Washington</option>
-							<option value="Washington DC">Washington DC</option>
-							<option value="West Virginia">West Virginia</option>
-							<option value="Wisconsin">Wisconsin</option>
-							<option value="Wyoming">Wyoming</option>
-						</select>
-						<input type="text" placeholder="License #" id="onboardLicenseNoA" maxlength="50">
-						<p class="formCheckText" id="formCheckStateA"></p>
-					</span>
-					<span class="formStateWrap" id="stateBoxB">
-						<label>License State</label>
-						<select id="onboardStateB">
-							<option value="">-Select State-</option>
-							<option value="Alabama">Alabama</option>
-							<option value="Alaska">Alaska</option>
-							<option value="Arizona">Arizona</option>
-							<option value="Arkansas">Arkansas</option>
-							<option value="California">California</option>
-							<option value="Colorado">Colorado</option>
-							<option value="Connecticut">Connecticut</option>
-							<option value="Delaware">Delaware</option>
-							<option value="Florida">Florida</option>
-							<option value="Georgia">Georgia</option>
-							<option value="Hawaii">Hawaii</option>
-							<option value="Idaho">Idaho</option>
-							<option value="Illinois">Illinois</option>
-							<option value="Indiana">Indiana</option>
-							<option value="Iowa">Iowa</option>
-							<option value="Kansas">Kansas</option>
-							<option value="Kentucky">Kentucky</option>
-							<option value="Louisiana">Louisiana</option>
-							<option value="Maine">Maine</option>
-							<option value="Maryland">Maryland</option>
-							<option value="Massachusetts">Massachusetts</option>
-							<option value="Michigan">Michigan</option>
-							<option value="Minnesota">Minnesota</option>
-							<option value="Mississippi">Mississippi</option>
-							<option value="Missouri">Missouri</option>
-							<option value="Montana">Montana</option>
-							<option value="Nebraska">Nebraska</option>
-							<option value="Nevada">Nevada</option>
-							<option value="New Hampshire">New Hampshire</option>
-							<option value="New Jersey">New Jersey</option>
-							<option value="New Mexico">New Mexico</option>
-							<option value="New York">New York</option>
-							<option value="North Carolina">North Carolina</option>
-							<option value="North Dakota">North Dakota</option>
-							<option value="Ohio">Ohio</option>
-							<option value="Oklahoma">Oklahoma</option>
-							<option value="Oregon">Oregon</option>
-							<option value="Pennsylvania">Pennsylvania</option>
-							<option value="Rhode Island">Rhode Island</option>
-							<option value="South Carolina">South Carolina</option>
-							<option value="South Dakota">South Dakota</option>
-							<option value="Tennessee">Tennessee</option>
-							<option value="Texas">Texas</option>
-							<option value="Utah">Utah</option>
-							<option value="Vermont">Vermont</option>
-							<option value="Virginia">Virginia</option>
-							<option value="Washington">Washington</option>
-							<option value="Washington DC">Washington DC</option>
-							<option value="West Virginia">West Virginia</option>
-							<option value="Wisconsin">Wisconsin</option>
-							<option value="Wyoming">Wyoming</option>
-						</select>
-						<input type="text" placeholder="License #" id="onboardLicenseNoB" maxlength="50">
-						<p class="formCheckText" id="formCheckStateB"></p>
-					</span>
-					<span class="formStateWrap" id="stateBoxC">
-						<label>License State</label>
-						<select id="onboardStateC">
-							<option value="">-Select State-</option>
-							<option value="Alabama">Alabama</option>
-							<option value="Alaska">Alaska</option>
-							<option value="Arizona">Arizona</option>
-							<option value="Arkansas">Arkansas</option>
-							<option value="California">California</option>
-							<option value="Colorado">Colorado</option>
-							<option value="Connecticut">Connecticut</option>
-							<option value="Delaware">Delaware</option>
-							<option value="Florida">Florida</option>
-							<option value="Georgia">Georgia</option>
-							<option value="Hawaii">Hawaii</option>
-							<option value="Idaho">Idaho</option>
-							<option value="Illinois">Illinois</option>
-							<option value="Indiana">Indiana</option>
-							<option value="Iowa">Iowa</option>
-							<option value="Kansas">Kansas</option>
-							<option value="Kentucky">Kentucky</option>
-							<option value="Louisiana">Louisiana</option>
-							<option value="Maine">Maine</option>
-							<option value="Maryland">Maryland</option>
-							<option value="Massachusetts">Massachusetts</option>
-							<option value="Michigan">Michigan</option>
-							<option value="Minnesota">Minnesota</option>
-							<option value="Mississippi">Mississippi</option>
-							<option value="Missouri">Missouri</option>
-							<option value="Montana">Montana</option>
-							<option value="Nebraska">Nebraska</option>
-							<option value="Nevada">Nevada</option>
-							<option value="New Hampshire">New Hampshire</option>
-							<option value="New Jersey">New Jersey</option>
-							<option value="New Mexico">New Mexico</option>
-							<option value="New York">New York</option>
-							<option value="North Carolina">North Carolina</option>
-							<option value="North Dakota">North Dakota</option>
-							<option value="Ohio">Ohio</option>
-							<option value="Oklahoma">Oklahoma</option>
-							<option value="Oregon">Oregon</option>
-							<option value="Pennsylvania">Pennsylvania</option>
-							<option value="Rhode Island">Rhode Island</option>
-							<option value="South Carolina">South Carolina</option>
-							<option value="South Dakota">South Dakota</option>
-							<option value="Tennessee">Tennessee</option>
-							<option value="Texas">Texas</option>
-							<option value="Utah">Utah</option>
-							<option value="Vermont">Vermont</option>
-							<option value="Virginia">Virginia</option>
-							<option value="Washington">Washington</option>
-							<option value="Washington DC">Washington DC</option>
-							<option value="West Virginia">West Virginia</option>
-							<option value="Wisconsin">Wisconsin</option>
-							<option value="Wyoming">Wyoming</option>
-						</select>
-						<input type="text" placeholder="License #" id="onboardLicenseNoC" maxlength="50">
-						<p class="formCheckText" id="formCheckStateC"></p>
-					</span>
-					<span class="formLabelBox">
-						<label>Where did you hear about us?</label>
-						<input type="text" placeholder="Enter Here" id="onboardWhereUHear" maxlength="50">
-					</span>
-					<div class="relative">
-						<div id="availabilityQuestion" class="whatsThis">?</div>
-						<div id="availabilityMessage" class="whatsThisMessage">
-							Frontliner clients will be able to browse therapists in their state and select one they want to work with. Once we receive a request from a frontliner, we will notify you by email with their information.<br><br>
-							It will be up to you to contact them and set up an appointment. Clients will be notified that the appointment is not confirmed until they hear from you. For the administrative purposes, you can treat the frontliner as another patient in your existing practice. It is completely up to you how many free sessions you offer, how often you see the client, and how long the sessions are. Please communicate your expectations with the client at the beginning of therapy.<br><br>
-							Your profile will remain active on the website until you notify us that you no longer have availability. To deactivate your profile (you can always re-activate later), please send us an email: projectparachute.eleos@gmail.com.
-						</div>
-						<h3>Weekly Availability</h3>
-						<p>Your availability will help frontliners find a therapist that best fits their schedule.</p>
-						<p>You can...</p>
-						<ul class="bulletList">
-							<li>Set aside specific days and times. However, keep in mind you may not get a booking from us for several weeks.</li>
-							<li>Or list your general availability  (e.g., Mondays 9 – 5, Tuesdays 4-8 pm, Saturdays 8-1). When we match you with a frontliner, you will work with them to find a time that works for both of you.</li>
-						</ul>
-						<span class="formLabelBoxTz">
-							<select id="onboardTimezone" required>
-								<option value="">-Select Timezone-</option>
-								<option value="EST">EST</option>
-								<option value="CST">CST</option>
-								<option value="MST">MST</option>
-								<option value="PST">PST</option>
-								<option value="AKST">AKST</option>
-								<option value="HST">HST</option>
-							</select>
-							<p class="formCheckText" id="formCheckTimezone">required</p>
-						</span>
-						<div class="formDaySchedule">
-							<label>Mon</label>	
-							<input type="time" id="onboardMonStart">
-							<label>to</label>
-							<input type="time" id="onboardMonEnd">
-						</div>
-						<div class="formDaySchedule">
-							<label>Tue</label>	
-							<input type="time" id="onboardTueStart">
-							<label>to</label>
-							<input type="time" id="onboardTueEnd">
-						</div>
-						<div class="formDaySchedule">
-							<label>Wed</label>	
-							<input type="time" id="onboardWedStart">
-							<label>to</label>
-							<input type="time" id="onboardWedEnd">
-						</div>
-						<div class="formDaySchedule">
-							<label>Thu</label>	
-							<input type="time" id="onboardThuStart">
-							<label>to</label>
-							<input type="time" id="onboardThuEnd">
-						</div>
-						<div class="formDaySchedule">
-							<label>Fri</label>	
-							<input type="time" id="onboardFriStart">
-							<label>to</label>
-							<input type="time" id="onboardFriEnd">
-						</div>
-						<div class="formDaySchedule">
-							<label>Sat</label>	
-							<input type="time" id="onboardSatStart">
-							<label>to</label>
-							<input type="time" id="onboardSatEnd">
-						</div>
-						<div class="formDaySchedule">
-							<label>Sun</label>	
-							<input type="time" id="onboardSunStart">
-							<label>to</label>
-							<input type="time" id="onboardSunEnd">
-						</div>
-					</div>
-					<div id="formConsent" class="formLabelBox">
-						<label>Do you give us permission to share your details on our website?<br>Your email and phone number <p class="bold">will not</p> be visible on your profile.</label>
-						<input type="checkbox" id="onboardConsent" class="formCheckbox">
-                        <label for="onboardConsent" id="consentLabel">I Consent</label>
-
-					</div>
-					<div>
-						<input type="submit" id="onboardSubmit">
-					</div>
-				</form>
-
-				<section id="confirmSubmitFrame">
-					<div id="confirmSubmitOnboarding">
-						Creating therapist profile....
-					</div>
-					<div id="confirmSubmitComplete">
-						Profile Created
-						<button id="confirmSubmitBtn" class="solidGreenBtn">OK</button>
-					</div>
-
-				</section> -->
 			</section>
 			
 		</main>
