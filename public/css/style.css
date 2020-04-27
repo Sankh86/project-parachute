@@ -333,6 +333,11 @@ textarea,
     font-size: 20px;
 }
 
+#queryState {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 #onboardImage {
     font-size: 16px;
 }
