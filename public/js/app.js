@@ -184,6 +184,7 @@ $('#liabilityInfo').hide();
 
 $('input:radio[name="onboardLicenseType"]').change(function() {
     $('#liabilityRadioBox').show();
+    $('#licenseRadioBox').hide();
     if ($(this).val() == 'Licensed') {
             $('#supervisorNameBox').hide();
             $('#stateBoxB').show();
@@ -633,127 +634,92 @@ $( "#queryTherapists" ).click(function() {
     });
 });
 
+//  ********** Request Appt Button & Form **********
+$('#requestApptBox').hide();
+$('#requestCompleteBox').hide();
+let therapistID = "";
+let therapistName = "";
+$('#therapistResults').on('click', '.requestApptBtn', function(){
+    therapistID = this.id
+    therapistID = therapistID.substr(0, therapistID.indexOf('-'));
+    therapistName = $(`#${therapistID}-name`).html();
+    $('#requestSelectedTherapist').html(`${therapistName} Selected`);
+
+    $('#therapistResults').hide();
+    $('#requestApptBox').show();
+
+});
+
+$('#requestPhoneNumber').keyup(function(){
+    $(this).val($(this).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3'))
+});
 
 
-//  ********** TEMP PROFILE **********
-// let = testProfile = {} ;
-// let profileURL = "";
-// db.collection("Therapists").doc("4FSK7p65RrSj7Vlsb974s941bgC3").get().then((snapshot) => {
-//     testProfile.id = snapshot.id;
-//     testProfile.availability = snapshot.data().Availability;
-//     testProfile.cityState = snapshot.data().cityState;
-//     testProfile.description = snapshot.data().description;
-//     testProfile.licenseType = snapshot.data().licenseType;
-//     testProfile.name = snapshot.data().name;
-//     testProfile.picture = snapshot.data().picture;
-//     testProfile.timeZone = snapshot.data().timeZone;
-//     testProfile.insurance = snapshot.data().insurance;
+$('#requestApptBox').submit(function(e) {
+    e.preventDefault();
+    console.log("request submit");
+    const requestName = cleanString($('#requestName').val());
+    const requestEmail = $('#requestEmail').val();
+    const requestPhoneNumber = $('#requestPhoneNumber').val();
+    const requestState = $('#requestState').val();
+    const requestTempState = cleanString($('#requestTempState').val());
+    const requestProfession = cleanString($('#requestProfession').val());
+    const requestImpact = cleanString($('#requestImpact').val());
+    
+    const requestWhereUHear = cleanString($('#requestWhereUHear').val());
 
-//     let licenseType = ""
-//     if (testProfile.licenseType !== "") {
-//         licenseType = `, ${testProfile.licenseType}`
-//     }
-//     $(`#${testProfile.id}-name`).html(`${testProfile.name}${licenseType}`);
-//     if (testProfile.cityState !== "") {
-//         $(`#${testProfile.id}-cityState`).html(`${testProfile.cityState}`);
-//     }
-//     if (testProfile.insurance !== "") {
-//         $(`#${testProfile.id}-insurance`).html(`Insurance: ${testProfile.insurance}`);
-//     }
-//     if (testProfile.description !== "") {
-//         $(`#${testProfile.id}-description`).html(JSON.parse(`"${testProfile.description}"`));
-//     }
-//     $(`#${testProfile.id}-timeZone`).html(`Availability [${testProfile.timeZone}] :`);
+    const requestCurrentTime = new Date().toISOString();
 
-//     let availability = ""
-//     if (testProfile.availability.mon.startTime !== "" && testProfile.availability.mon.endTime !== "") {
-//         availability += `Mon: ${convertTime(testProfile.availability.mon.startTime)} to ${convertTime(testProfile.availability.mon.endTime)}`
-//     }
-//     if (testProfile.availability.tue.startTime !== "" && testProfile.availability.tue.endTime !== "") {
-//         if (availability.length > 0) {availability += "<br>"}
-//         availability += `Tue: ${convertTime(testProfile.availability.tue.startTime)} to ${convertTime(testProfile.availability.tue.endTime)}`
-//     }
-//     if (testProfile.availability.wed.startTime !== "" && testProfile.availability.wed.endTime !== "") {
-//         if (availability.length > 0) {availability += "<br>"}
-//         availability += `Wed: ${convertTime(testProfile.availability.wed.startTime)} to ${convertTime(testProfile.availability.wed.endTime)}`
-//     }
-//     if (testProfile.availability.thu.startTime !== "" && testProfile.availability.thu.endTime !== "") {
-//         if (availability.length > 0) {availability += "<br>"}
-//         availability += `Thu: ${convertTime(testProfile.availability.thu.startTime)} to ${convertTime(testProfile.availability.thu.endTime)}`
-//     }
-//     if (testProfile.availability.fri.startTime !== "" && testProfile.availability.fri.endTime !== "") {
-//         if (availability.length > 0) {availability += "<br>"}
-//         availability += `Fri: ${convertTime(testProfile.availability.fri.startTime)} to ${convertTime(testProfile.availability.fri.endTime)}`
-//     }
-//     if (testProfile.availability.sat.startTime !== "" && testProfile.availability.sat.endTime !== "") {
-//         if (availability.length > 0) {availability += "<br>"}
-//         availability += `Sat: ${convertTime(testProfile.availability.sat.startTime)} to ${convertTime(testProfile.availability.sat.endTime)}`
-//     }
-//     if (testProfile.availability.sun.startTime !== "" && testProfile.availability.sun.endTime !== "") {
-//         if (availability.length > 0) {availability += "<br>"}
-//         availability += `Sun: ${convertTime(testProfile.availability.sun.startTime)} to ${convertTime(testProfile.availability.sun.endTime)}`
-//     }
-//     $(`#${testProfile.id}-availability`).html(availability);
+    const fbRequest =  `{
+        "name": "${requestName}",
+        "email": "${requestEmail}",
+        "phone": "${requestPhoneNumber}",
+        "state": "${requestState}",
+        "tempState": "${requestTempState}",
+        "profession": "${requestProfession}",
+        "impact": "${requestImpact}",
+        "therapistID": "${therapistID}",
+        "therapistName": "${cleanString(therapistName)}"
+    }`
 
-// }).then(() => {
-//     storage.ref(testProfile.picture).getDownloadURL().then((url) => {
-//         testProfile.picture = url;
-//         $(`#${testProfile.id}-picture`).attr('src', testProfile.picture);
-//     });
-// });
+    let update = JSON.parse(fbRequest);
+    db.collection("Requests").doc(requestCurrentTime).set(update).then(() => {
+        db.collection("Requests").doc(requestCurrentTime).delete().then(() => {
+            $('#requestApptBox').trigger("reset");
+            $('#requestApptBox').hide();
+            $('#requestCompleteBox').show();    
+        });
+    }).catch(err => {
+        console.log(err);
+    });
+
+    if (requestWhereUHear.length > 0) {
+        const fbMarketing = `{"WhereUHear": "${requestWhereUHear}"}`
+        update = JSON.parse(fbMarketing);
+        db.collection("Marketing").doc(requestCurrentTime).set(update);
+    }
 
 
-// var testKentucky = db.collectionGroup('Therapists').where('LicenseStateA', '==', 'Kentucky');
-// testKentucky.get().then(function (querySnapshot) {
-//     querySnapshot.forEach(function (doc) {
-//         console.log(doc.id, ' => ', doc.data());
-//     });
-// });
-
-// let queryData =  []
-// db.collection('Therapists')
-//     .where("licenseStateList", "array-contains", "Kentucky")
-//     .where("showProfile", "==", true)
-//     .where("isVerified", "==", true)
-//     .get().then((snap) => {
-//     snap.forEach((doc) => {
-//         let n = queryData.length
-//         queryData[n] = {};
-//         queryData[n]['id'] = doc.id;
-//         queryData[n]['availability'] = doc.data().Availability;
-//         queryData[n]['cityState'] = doc.data().cityState;
-//         queryData[n]['description'] = doc.data().description;
-//         queryData[n]['licenseType'] = doc.data().licenseType;
-//         queryData[n]['name'] = doc.data().name;
-//         queryData[n]['picture'] = doc.data().picture;
-//         queryData[n]['timeZone'] = doc.data().timeZone;
-//         queryData[n]['insurance'] = doc.data().insurance;
-//         queryData[n]['sortValue'] = Math.random();
-//     });
-// }).then(() => {
-//     queryData.sort((a, b) => a.sortValue - b.sortValue);
-// });
+});
 
 
 
 
 
 
-//  ********** Get Storage Reference URL **********
-//storage.ref('therapistPhotos/parachute-logo.png').getDownloadURL().then(function(url) {console.log(url)});
-
-
-// storageRef.getDownloadURL().then(function(url) {
-                
-//     onboardPicture = url
 
 
 
-// db.collection('Therapists').get().then((snap) => {
-//     therapistArray = snap.data();
-// });
 
 
+
+
+
+
+
+
+
+//  ********** Edit Functions **********
 
 var therapistArray = {}
 function fetchDB() {

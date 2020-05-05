@@ -327,7 +327,8 @@ textarea,
 .formStateWrap select,
 .formDaySchedule input,
 #onboardTimezone,
-#queryState {
+#queryState,
+#requestState {
     padding-left: 10px;
     border: none;
     border-bottom: 1px solid #03a7ff;
@@ -593,6 +594,7 @@ footer p {
     color: white;
     padding: 5px;
     height: 30px;
+    overflow: hidden;
 }
 
 .availabilityTitle {
@@ -604,7 +606,7 @@ footer p {
 .profileTitle * {
     margin: 0;
     padding: 0 0 0 0;
-    overflow: hidden;
+    white-space: nowrap;
 
 }
 
@@ -629,7 +631,7 @@ footer p {
 }
 
 .availabilityWrap {
-    min-width: 250px;
+    min-width: 210px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -704,7 +706,7 @@ footer p {
     }
 }
 
-@media (min-width: 850px) {
+@media (min-width: 800px) {
     .profileWrap {
         flex-direction: row;
     }
