@@ -56,8 +56,6 @@ function convertTime(time) {
 
 //  ***** Upload Therapist Data *****
 function uploadTherapistData() {
-    $('#confirmSubmitFrame').show();
-    $('#confirmSubmitOnboarding').show();
     const uid = auth.currentUser.uid
     let onboardPicture = ""
     if ($('#onboardImage')[0].files[0] !== undefined) {
@@ -161,13 +159,10 @@ function uploadTherapistData() {
         checkConsent = false;
         $('#previewImage').hide();
         $("#onboardSubmit").attr("disabled", true);
-
+        $('#confirmCreated').show();
         auth.signOut().then(() => {console.log('Signed Out')});
-
-        $('#confirmSubmitOnboarding').hide();
-        $('#confirmSubmitComplete').show();
     }).catch(err => {
-        $('#confirmSubmitOnboarding').html(err.code);
+        console.log(err.code);
     });
 }
 
@@ -181,6 +176,8 @@ $('#studentEmail').hide();
 $('#provisionalInfo').hide();
 $('#liabilityRadioBox').hide();
 $('#liabilityInfo').hide();
+$('#confirmCreated').hide();
+
 
 $('input:radio[name="onboardLicenseType"]').change(function() {
     $('#liabilityRadioBox').show();
@@ -437,21 +434,12 @@ $('select').change(function() {
     }
 });
 
-//  ***** Confirm Submit Button *****
-
-$('#confirmSubmitFrame').hide();
-$('#confirmSubmitOnboarding').hide();
-$('#confirmSubmitComplete').hide();
-$( "#confirmSubmitBtn" ).click(function() {
-    $('#confirmSubmitFrame').hide();
-    $('#confirmSubmitOnboarding').hide();
-    $('#confirmSubmitComplete').hide();
-});
-
 
 //  ***** Onboard Therapist *****
 $('#onboardForm').submit(function(e) {
     e.preventDefault();
+    $('#onboardInfoBox').hide();
+    $('#onboardForm').hide();
     const onboardEmail = $('#onboardEmail').val();
     auth.createUserWithEmailAndPassword(onboardEmail, "project-parachute").then(cred => {
         console.log("account created")
@@ -460,11 +448,20 @@ $('#onboardForm').submit(function(e) {
         if (err.code === "auth/email-already-in-use") {
             auth.signInWithEmailAndPassword(onboardEmail, "project-parachute").then(cred => {
                 console.log("account logged in")
+                $('#confirmCreated').empty();
+                $('#confirmCreated').html(
+                    `
+                    <h3 style="text-align: left;">Our records indicate you have previously registered as a therapist with Project Parachute.</h3>
+					<p style="text-align: left;">Your profile has been updated with the information you just provided. Please keep in mind that any new profile submission overrides all of your old information, so please make sure the form is filled out completely. If you wish, you may fill out this form again.</p>
+					<p style="text-align: left;">We are working on the functionality to allow you to login and update your profile manually and we will notify you once this is available.</p>
+					<p style="text-align: left;">Questions? See our <a href = "faq.html">FAQ page</a> or email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
+                    `
+                );
+
                 uploadTherapistData();
             });
         } else {
-            $('#confirmSubmitOnboarding').html(err.code);
-            console.log(err.code)
+            console.log(err.code);
         }
     });
 });
@@ -523,7 +520,6 @@ $('#therapistResults').hide();
 let queryData =  []
 $( "#queryTherapists" ).click(function() {
     $('#questionnaire').hide();
-    $('#therapistResults').show();
     queryData =  [];
     const stateLookup = $('#queryState').val();
     
@@ -549,88 +545,94 @@ $( "#queryTherapists" ).click(function() {
     }).then(() => {
         queryData.sort((a, b) => a.sortValue - b.sortValue);
 
-        $.each(queryData, function(index, value) {
-            const id = queryData[index]['id']
+        if(queryData.length > 0) {
+            $('#therapistResults').empty();
+            $('#therapistResults').show();
+            $.each(queryData, function(index, value) {
+                const id = queryData[index]['id']
 
-            const profileHTML = `    <section class="profileWrap">
-                                        <div class="profileImageWrap">
-                                            <img id="${id}-picture" class="profileImage" src="#" alt="Your Profile Picture" />
-                                        </div>
-                                        <div class="profileInfoWrap">
-                                            <div class="profileTitle">
-                                                <h2 id="${id}-name"></h2>
+                const profileHTML = `    <section class="profileWrap">
+                                            <div class="profileImageWrap">
+                                                <img id="${id}-picture" class="profileImage" src="#" alt="Your Profile Picture" />
                                             </div>
-                                            <div class="profileDetails">
-                                                <p id="${id}-cityState" style="font-weight: bold;"></p>
-                                                <p id="${id}-insurance" style="font-weight: bold; font-size: 18px;"></p>
-                                                <p id="${id}-description" class="profileDescription"></p>
+                                            <div class="profileInfoWrap">
+                                                <div class="profileTitle">
+                                                    <h2 id="${id}-name"></h2>
+                                                </div>
+                                                <div class="profileDetails">
+                                                    <p id="${id}-cityState" style="font-weight: bold;"></p>
+                                                    <p id="${id}-insurance" style="font-weight: bold; font-size: 18px;"></p>
+                                                    <p id="${id}-description" class="profileDescription"></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="availabilityWrap">
-                                            <p id="${id}-timeZone" class="availabilityTitle"></p>
-                                            <p id="${id}-availability" class="availabilityBlock"></p>
-                                            <button class="requestApptBtn" id="${id}-requestAppt">Request Appointment</button>
-                                        </div>
-                                    </section>  `
-            $('#therapistResults').append(profileHTML);
-            let licenseType = ""
-            if (queryData[index]['licenseType'] !== "") {
-                licenseType = `, ${queryData[index]['licenseType']}`
-            }
-            $(`#${id}-name`).html(`${queryData[index]['name']}${licenseType}`);
+                                            <div class="availabilityWrap">
+                                                <p id="${id}-timeZone" class="availabilityTitle"></p>
+                                                <p id="${id}-availability" class="availabilityBlock"></p>
+                                                <button class="requestApptBtn" id="${id}-requestAppt">Request Appointment</button>
+                                            </div>
+                                        </section>  `
+                $('#therapistResults').append(profileHTML);
+                let licenseType = ""
+                if (queryData[index]['licenseType'] !== "") {
+                    licenseType = `, ${queryData[index]['licenseType']}`
+                }
+                $(`#${id}-name`).html(`${queryData[index]['name']}${licenseType}`);
+                
+                if (queryData[index]['cityState'] !== "") {
+                    $(`#${id}-cityState`).html(`${queryData[index]['cityState']}`);
+                }
+                if (queryData[index]['insurance'] !== "") {
+                    $(`#${id}-insurance`).html(`Insurance: ${queryData[index]['insurance']}`);
+                }
+                if (queryData[index]['description'] !== "") {
+                    $(`#${id}-description`).html(JSON.parse(`"${queryData[index]['description']}"`));
+                }
+                $(`#${id}-timeZone`).html(`Availability [${queryData[index]['timeZone']}] :`);
             
-            if (queryData[index]['cityState'] !== "") {
-                $(`#${id}-cityState`).html(`${queryData[index]['cityState']}`);
-            }
-            if (queryData[index]['insurance'] !== "") {
-                $(`#${id}-insurance`).html(`Insurance: ${queryData[index]['insurance']}`);
-            }
-            if (queryData[index]['description'] !== "") {
-                $(`#${id}-description`).html(JSON.parse(`"${queryData[index]['description']}"`));
-            }
-            $(`#${id}-timeZone`).html(`Availability [${queryData[index]['timeZone']}] :`);
-        
-            let availability = ""
-            if (queryData[index]['availability']['mon']['startTime'] !== "" && queryData[index]['availability']['mon']['endTime'] !== "") {
-                availability += `Mon: ${convertTime(queryData[index]['availability']['mon']['startTime'])} to ${convertTime(queryData[index]['availability']['mon']['endTime'])}`
-            }
-            if (queryData[index]['availability']['tue']['startTime'] !== "" && queryData[index]['availability']['tue']['endTime'] !== "") {
-                if (availability.length > 0) {availability += "<br>"}
-                availability += `Tue: ${convertTime(queryData[index]['availability']['tue']['startTime'])} to ${convertTime(queryData[index]['availability']['tue']['endTime'])}`
-            }
-            if (queryData[index]['availability']['wed']['startTime'] !== "" && queryData[index]['availability']['wed']['endTime'] !== "") {
-                if (availability.length > 0) {availability += "<br>"}
-                availability += `Wed: ${convertTime(queryData[index]['availability']['wed']['startTime'])} to ${convertTime(queryData[index]['availability']['wed']['endTime'])}`
-            }
-            if (queryData[index]['availability']['thu']['startTime'] !== "" && queryData[index]['availability']['thu']['endTime'] !== "") {
-                if (availability.length > 0) {availability += "<br>"}
-                availability += `Thu: ${convertTime(queryData[index]['availability']['thu']['startTime'])} to ${convertTime(queryData[index]['availability']['thu']['endTime'])}`
-            }
-            if (queryData[index]['availability']['fri']['startTime'] !== "" && queryData[index]['availability']['fri']['endTime'] !== "") {
-                if (availability.length > 0) {availability += "<br>"}
-                availability += `Fri: ${convertTime(queryData[index]['availability']['fri']['startTime'])} to ${convertTime(queryData[index]['availability']['fri']['endTime'])}`
-            }
-            if (queryData[index]['availability']['sat']['startTime'] !== "" && queryData[index]['availability']['sat']['endTime'] !== "") {
-                if (availability.length > 0) {availability += "<br>"}
-                availability += `Sat: ${convertTime(queryData[index]['availability']['sat']['startTime'])} to ${convertTime(queryData[index]['availability']['sat']['endTime'])}`
-            }
-            if (queryData[index]['availability']['sun']['startTime'] !== "" && queryData[index]['availability']['sun']['endTime'] !== "") {
-                if (availability.length > 0) {availability += "<br>"}
-                availability += `Sun: ${convertTime(queryData[index]['availability']['sun']['startTime'])} to ${convertTime(queryData[index]['availability']['sun']['endTime'])}`
-            }
-            $(`#${id}-availability`).html(availability);
+                let availability = ""
+                if (queryData[index]['availability']['mon']['startTime'] !== "" && queryData[index]['availability']['mon']['endTime'] !== "") {
+                    availability += `Mon: ${convertTime(queryData[index]['availability']['mon']['startTime'])} to ${convertTime(queryData[index]['availability']['mon']['endTime'])}`
+                }
+                if (queryData[index]['availability']['tue']['startTime'] !== "" && queryData[index]['availability']['tue']['endTime'] !== "") {
+                    if (availability.length > 0) {availability += "<br>"}
+                    availability += `Tue: ${convertTime(queryData[index]['availability']['tue']['startTime'])} to ${convertTime(queryData[index]['availability']['tue']['endTime'])}`
+                }
+                if (queryData[index]['availability']['wed']['startTime'] !== "" && queryData[index]['availability']['wed']['endTime'] !== "") {
+                    if (availability.length > 0) {availability += "<br>"}
+                    availability += `Wed: ${convertTime(queryData[index]['availability']['wed']['startTime'])} to ${convertTime(queryData[index]['availability']['wed']['endTime'])}`
+                }
+                if (queryData[index]['availability']['thu']['startTime'] !== "" && queryData[index]['availability']['thu']['endTime'] !== "") {
+                    if (availability.length > 0) {availability += "<br>"}
+                    availability += `Thu: ${convertTime(queryData[index]['availability']['thu']['startTime'])} to ${convertTime(queryData[index]['availability']['thu']['endTime'])}`
+                }
+                if (queryData[index]['availability']['fri']['startTime'] !== "" && queryData[index]['availability']['fri']['endTime'] !== "") {
+                    if (availability.length > 0) {availability += "<br>"}
+                    availability += `Fri: ${convertTime(queryData[index]['availability']['fri']['startTime'])} to ${convertTime(queryData[index]['availability']['fri']['endTime'])}`
+                }
+                if (queryData[index]['availability']['sat']['startTime'] !== "" && queryData[index]['availability']['sat']['endTime'] !== "") {
+                    if (availability.length > 0) {availability += "<br>"}
+                    availability += `Sat: ${convertTime(queryData[index]['availability']['sat']['startTime'])} to ${convertTime(queryData[index]['availability']['sat']['endTime'])}`
+                }
+                if (queryData[index]['availability']['sun']['startTime'] !== "" && queryData[index]['availability']['sun']['endTime'] !== "") {
+                    if (availability.length > 0) {availability += "<br>"}
+                    availability += `Sun: ${convertTime(queryData[index]['availability']['sun']['startTime'])} to ${convertTime(queryData[index]['availability']['sun']['endTime'])}`
+                }
+                $(`#${id}-availability`).html(availability);
 
 
-            if (queryData[index]['picture'] !== "") {
-               storage.ref(queryData[index]['picture']).getDownloadURL().then((url) => {
-                    $(`#${id}-picture`).attr('src', url)
-                }).catch(err => {
-                    $(`#${id}-picture`).attr('src', 'img/parachute-logo.png')
-                });
-            } else {
-                $(`#${id}-picture`).attr('src', 'img/parachute-logo.png');
-            }
-        });
+                if (queryData[index]['picture'] !== "") {
+                storage.ref(queryData[index]['picture']).getDownloadURL().then((url) => {
+                        $(`#${id}-picture`).attr('src', url)
+                    }).catch(err => {
+                        $(`#${id}-picture`).attr('src', 'img/parachute-logo.png')
+                    });
+                } else {
+                    $(`#${id}-picture`).attr('src', 'img/parachute-logo.png');
+                }
+            });
+        } else {
+            $('#therapistResults').show();
+        }
     });
 });
 
