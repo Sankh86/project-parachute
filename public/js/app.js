@@ -148,7 +148,7 @@ function uploadTherapistData() {
             }
         },
         "exposeInfo": ${onboardConsent},
-        "isVerified": true,
+        "isVerified": false,
         "showProfile": true,
         "createdDate": "${onboardCurrentTime}"
     }`
@@ -703,58 +703,3 @@ $('#requestApptBox').submit(function(e) {
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  ********** Edit Functions **********
-
-var therapistArray = {}
-function fetchDB() {
-    therapistArray = {}
-    db.collection("Therapists").get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            therapistArray[doc.id] = doc.data();
-
-
-        });
-    });
-}
-
-// function updateDB() {
-//     let recordCount = Object.keys(therapistArray).length
-//     $.each(therapistArray, function(index, value) {
-//         therapistArray[index]['licenseStateList'] = [value.licenseStateA, value.licenseStateB, value.licenseStateC];
-//         therapistArray[index]['licenseStateIDList'] = [value.licenseNoA, value.licenseNoB, value.licenseNoC];
-//         if(!('showProfile' in therapistArray[index])) {
-//             therapistArray[index]['showProfile'] = true;
-//         }
-//     });
-//     console.log(`${recordCount} updated`)
-
-//     let currentRecord = 0;
-//     $.each(therapistArray, function(index, value) {
-//         db.collection('Therapists').doc(index).update(therapistArray[index]).then(() => {
-//             currentRecord += 1;
-//             console.log(`${index} loaded (${currentRecord}/${recordCount})`);    
-//         });
-//     });     
-
-
-
-// }
