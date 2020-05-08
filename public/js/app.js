@@ -159,6 +159,7 @@ function uploadTherapistData() {
         checkConsent = false;
         $('#previewImage').hide();
         $("#onboardSubmit").attr("disabled", true);
+        $('#creatingProfile').hide();
         $('#confirmCreated').show();
         auth.signOut().then(() => {console.log('Signed Out')});
     }).catch(err => {
@@ -177,6 +178,7 @@ $('#provisionalInfo').hide();
 $('#liabilityRadioBox').hide();
 $('#liabilityInfo').hide();
 $('#confirmCreated').hide();
+$('#creatingProfile').hide();
 
 
 $('input:radio[name="onboardLicenseType"]').change(function() {
@@ -440,6 +442,8 @@ $('#onboardForm').submit(function(e) {
     e.preventDefault();
     $('#onboardInfoBox').hide();
     $('#onboardForm').hide();
+    $('#creatingProfile').show();
+
     const onboardEmail = $('#onboardEmail').val();
     auth.createUserWithEmailAndPassword(onboardEmail, "project-parachute").then(cred => {
         console.log("account created")
