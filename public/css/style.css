@@ -81,11 +81,6 @@ header {
     border-radius: 5px;
 }
 
-.eleosFooter {
-    height: 20px;
-    width: 65px;
-}
-
 .topMenuFrame,
 .viewBox {
     max-width: 1200px;
@@ -179,8 +174,8 @@ main {
 }
 
 .stephImage {
-    height: 365px;
-    width: 365px;
+    max-width: 400px;
+    min-width: 360px;
 }
 
 .blueBox {
@@ -206,7 +201,7 @@ main {
 
 .therapistSelect {
     flex-direction: column;
-    margin: 150px 10px 100px;
+    margin: 50px 10px 20px;
     align-items: stretch;
 }
 
@@ -518,7 +513,7 @@ textarea,
 }
 
 
-/* Media Queries */
+/* Footer */
 
 footer {
     background: #05143f;
@@ -532,6 +527,26 @@ footer p {
     padding: 5px;
     font-size: 12px;
     margin: 0;
+}
+
+.eleosFooterLogo {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-weight: 14px;
+    justify-content: center;
+}
+
+.eleosFooterLogo:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.eleosFooter {
+    padding-left: 5px;
+    height: 20px;
+    width: 65px;
 }
 
 #confirmSubmitFrame {
@@ -602,8 +617,6 @@ footer p {
     height: 220px;
     flex: 1 1;
 }
-
-
 
 .profileTitle,
 .availabilityTitle {
@@ -681,6 +694,9 @@ footer p {
     margin-top: 5px;
 }
 
+.teleLabel {
+    width: 80px;
+}
 
 /* Media Queries */
 
@@ -695,7 +711,6 @@ footer p {
 @media (min-width: 700px) {
     .stephProfile {
         flex-direction: row;
-        border-left: 3px solid black;
     }
 
     nav {

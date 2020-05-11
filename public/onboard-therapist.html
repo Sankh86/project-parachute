@@ -30,7 +30,7 @@
 					<a href="onboard-therapist.html" class="navItem">I'm a Therapist</a>
 					<a href="parachute-members.html" class="navItem">I'm a Frontliner</a>
 					<a href="faq.html" class="navItem">FAQ</a>
-					<a href="https://www.eleos.health/"><img class="eleosPicture" src="img/Eleos Logo White 2019.webp"></a>
+					<!-- <a href="https://www.eleos.health/"><img class="eleosPicture" src="img/Eleos Logo White 2019.png"></a> -->
 					
 				</nav>
 			</section>
@@ -38,7 +38,7 @@
 
 		<main>
 			<section class="parachuteLogoWrapper">
-				<img class="parachuteLogo" src="img/ProjectParachute_logo_rev.webp">
+				<img class="parachuteLogo" src="img/ProjectParachute_logo_rev.png">
 			</section>
 			<section class="viewBox">
 				<section id="onboardInfoBox">
@@ -52,7 +52,8 @@
 						<li>Provisionally licensed therapists (you have a temporary or a training license but are still supervised)</li>
 					</ul>
 					<p style="text-align: left;">Unfortunately, therapists-in-training (graduate students, interns, etc.) are not able to provide services through Project Parachute. If you are interested in other volunteer opportunities, please email us at  <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
-					<p style="text-align: left;">Currently, we do <span style="font-weight: bold;">not</span> have the ability for therapists login to their profile yet, but it is something we are working on. If you want to update anything about your profile (I.e. picture, availability, bio) please fill out this form <a href = "https://form.jotform.com/201105062784144">here</a>. Please allow us 24 hours to manually update your profile.</p>
+					<h3 style="text-align: left;">Looking to update your profile information?</h3>
+					<p style="text-align: left;">Please <span style="font-weight: bold;">do not</span> use the form below if you already have a profile with us (you have previously registered as a therapist). If you would like to make any changes to your profile, please submit the form here <a href = "https://form.jotform.com/201105062784144">here</a> and allow us 24 hours to update it. We are currently working on the login functionality for therapists and will notify you when it’s available.</p>
 					<h3 style="text-align: left;">Questions? See our <a href = "faq.html">FAQ page</a> or send us an email.</h3>
 				</section>
 				<div id="licenseRadioBox">
@@ -125,6 +126,15 @@
 						<label>Please provide a brief bio describing conditions you treat, including specialty, type of therapy you do, etc. to display with your profile.</label>
 						<textarea placeholder="Enter Here" id="onboardDescription" rows="4" maxlength="1800" required></textarea>
 						<p class="formCheckText">required</p>
+					</span>
+					<span class="formLabelBox">
+						<label>Would you like to receive helpful information from us about telehealth?</label>
+						<span>
+							<input type="radio" id="telehealthYes" class="formCheckbox" name="telehealthCheck" value="Yes">
+							<label class="teleLabel" for="telehealthYes">Yes</label>
+							<input type="radio" id="telehealthNo" class="formCheckbox" name="telehealthCheck" value="No">
+							<label class="teleLabel" for="telehealthNo">No</label>
+						</span>
 					</span>
 					<span class="formStateWrap">
 						<label>License State</label>
@@ -327,6 +337,7 @@
 								<option value="EST">EST</option>
 								<option value="CST">CST</option>
 								<option value="MST">MST</option>
+								<option value="MDT">MDT</option>
 								<option value="PST">PST</option>
 								<option value="AKST">AKST</option>
 								<option value="HST">HST</option>
@@ -408,7 +419,7 @@
 						<li>For administrative purposes, you can treat the frontliner as another patient in your existing practice (i.e., consent forms, handling no-shows, etc.). It is completely up to you how many free sessions you offer, how often you see the client, and how long the sessions are. Please set these expectations with the client at the beginning of therapy.</li>
 						<li>It may be a month or longer before we are able to make a match. We're hearing from frontliners that they definitely want someone to talk to, but that they also feel too overwhelmed to seek out support at this moment. We're anticipating a second mental health wave after this immediate crisis.</li>
 					</ul>
-					<p style="text-align: left;"><span style="font-weight:bold";>How many clients will I get?</span>  You will continue receiving matches as long as your profile is active on our website. If you are no longer available to provider services, please request for your profile to be hidden or removed by emailing us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>. You can re-activate your profile at any time.</p>
+					<p style="text-align: left;"><span style="font-weight:bold";>How many clients will I get?</span>  You will continue receiving matches as long as your profile is active on our website. If you are no longer available to provide services, please request for your profile to be hidden or removed by emailing us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>. You can re-activate your profile at any time.</p>
 					<h3 style="text-align: left;">Who counts as a frontliner:</h3>
 					<p style="text-align: left;">Someone who is working in a face-to-face healthcare setting where they may or may not have direct contact and/or care for someone with COVID-19. This includes healthcare workers and also admin staff (e.g. check in), cleaners, cafeteria workers, etc.</p>
 					<p style="text-align: left;">Someone who is working in a face-to-face public health setting (with homeless individuals, at COVID testing centers) as someone who is promoting screening, testing, and care for those with COVID-19.</p>
@@ -417,13 +428,13 @@
 					<p style="text-align: left;"><span style="font-weight:bold";>Project Parachute is now on social media:</span>  You can find us on <a href = "https://www.facebook.com/ParachuteEleos">Facebook</a>, on <a href = "https://twitter.com/Parachute_Eleos">Twitter</a> and on <a href = "https://www.instagram.com/project_parachute20/">Instagram</a>.  Please like and share our messages for both <a href = "https://www.facebook.com/photo?fbid=10218797901231435&set=a.1065288865281">therapists</a> and <a href = "https://www.facebook.com/photo?fbid=115337403455354&set=a.114240076898420">frontliners</a>. We need all the help we can get to amplify the effort and reach everyone who needs support. Please tag anyone in a post who might want to contribute to the effort or who might need support.</p>
 					<p style="text-align: left;"><span style="font-weight:bold";>Psychological First Aid:</span>  The National Child Traumatic Stress Network has a 5-hour training <a href = "https://learn.nctsn.org/course/index.php?categoryid=11&fbclid=IwAR0xnIAUsIZBZS1ttTNqDei4BlcI0gt8BqJvBkiYb3HkwPjGAvab4uNak3Y">here</a>. Johns Hopkins has a free Coursera course on Psychological First Aid <a href = "https://www.coursera.org/learn/psychological-first-aid">here</a>.</p>
 					<p style="text-align: left;"><span style="font-weight:bold";>Recruit therapists:</span>  We're still missing representation in all 50 states. Please consider writing to your local or state therapist listserv letting people know about Project Parachute. The best link to direct them to is <a href = "https://www.project-parachute.org/">here</a>.</p>
-					<p style="text-align: left;">Other questions? See our FAQ page or email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a></p>
+					<p style="text-align: left;">Other questions? See our <a href = "faq.html">FAQ page</a> or email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a></p>
 				</section>
 			</section>
 			
 		</main>
 		<footer>
-			<a href="https://www.eleos.health/"><img class="eleosFooter" src="img/Eleos Logo White 2019.webp"></a>
+			<a class="eleosFooterLogo" href="https://www.eleos.health/">Supported by<img class="eleosFooter" src="img/Eleos Logo White 2019.png"></a>
 			<p title="Copyright Info">&copy;2020 David Cheatham ~ All Rights Reserved</p>
 		</footer>
 	</body>

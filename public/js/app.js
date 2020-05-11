@@ -75,6 +75,9 @@ function uploadTherapistData() {
     const onboardLicenseType = cleanString($('#onboardLicenseType').val());
     const onboardInsurance = cleanString($('#onboardInsurance').val());
     const onboardDescription = cleanString($('#onboardDescription').val());
+
+    let onboardTelehealth = $('input[name="telehealthCheck"]:checked').val();
+    if (onboardTelehealth  === undefined) {onboardTelehealth = "No"}
     
     const onboardStateA = $('#onboardStateA').val();
     const onboardLicenseNoA = $('#onboardLicenseNoA').val();
@@ -114,6 +117,7 @@ function uploadTherapistData() {
         "insurance": "${onboardInsurance}",
         "picture": "${onboardPicture}",
         "description": "${onboardDescription}",
+        "telehealthConsent" : "${onboardTelehealth}",
         "licenseStateList": ["${onboardStateA}", "${onboardStateB}", "${onboardStateC}"],
         "licenseStateIDList": ["${onboardLicenseNoA}", "${onboardLicenseNoB}", "${onboardLicenseNoC}"],
         "timeZone": "${onboardTimezone}",
@@ -591,7 +595,7 @@ $( "#queryTherapists" ).click(function() {
                 if (queryData[index]['description'] !== "") {
                     $(`#${id}-description`).html(JSON.parse(`"${queryData[index]['description']}"`));
                 }
-                $(`#${id}-timeZone`).html(`Availability [${queryData[index]['timeZone']}] :`);
+                $(`#${id}-timeZone`).html(`Availability ${queryData[index]['timeZone']} :`);
             
                 let availability = ""
                 if (queryData[index]['availability']['mon']['startTime'] !== "" && queryData[index]['availability']['mon']['endTime'] !== "") {
