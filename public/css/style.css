@@ -81,6 +81,66 @@ header {
     border-radius: 5px;
 }
 
+.socialWrapper {
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.socialIcon {
+    padding: 3px 5px;
+    border-radius: 5px;
+    height: 26px;
+    cursor: pointer;
+}
+
+.socialIcon:hover {
+    background-color: #67dcfc;
+}
+
+.contactFooter {
+    cursor: pointer;
+}
+
+.contactFooter:hover {
+    color: #67dcfc;
+    text-decoration: underline;
+}
+
+#contactUsForm,
+#contactUsComplete {
+    width: 95%;
+    max-width: 600px;
+    background-color: #e7f1f5;
+    border: 3px solid #03a7ff;
+    border-radius: 20px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-shadow: 0 0 200px 150px rgb(200, 200, 200);
+
+}
+
+#contactUsComplete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#contactUsForm span {
+    width: calc(100% - 20px);
+}
+
+.contactButtons {
+    display: flex;
+    justify-content: center;
+}
+
 .topMenuFrame,
 .viewBox {
     max-width: 1200px;
@@ -149,6 +209,7 @@ main {
 .viewBox {
     text-align: center;
     margin: 0 auto;
+    position: relative;
 }
 
 .bulletList {
@@ -174,8 +235,7 @@ main {
 }
 
 .stephImage {
-    max-width: 400px;
-    min-width: 360px;
+    max-width: 360px;
 }
 
 .blueBox {
@@ -227,6 +287,22 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+.solidGrayBtn {
+    background-color: #c9c9c9;
+    border: 2px solid #666666;
+    font-size: 22px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 10px 20px;
+    color: black;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
 input[type="submit"]:disabled {
     background-color: lightgrey;
     border: 2px solid lightgrey;
@@ -234,7 +310,9 @@ input[type="submit"]:disabled {
 }
 
 .solidGreenBtn:hover,
-.requestApptBtn {
+.solidGrayBtn:hover,
+.requestApptBtn:hover,
+input[type="submit"]:hover {
     color: white;
 }
 

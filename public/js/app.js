@@ -711,3 +711,71 @@ $('#requestApptBox').submit(function(e) {
 
 
 });
+
+//  ********** Contact Form **********
+
+$('html').on('click', '.contactUs', function(){
+    if( !($('#contactUsForm').length)) {
+        const contactUsHTML = `  <form id="contactUsForm">
+                                    <h2>Contact Us</h2>
+                                    <p style="text-align:left">Please feel free to reach out to us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>, or fill out the form below.</p>
+                                    <p style="text-align:left">We'd love to hear from you.</p>
+                                    <span class="formLabelBox">
+                                        <input type="text" placeholder="Name" id="contactName" maxlength="50" required>
+                                    </span>
+                                    <span class="formLabelBox">
+                                        <input type="email" placeholder="Email" id="contactEmail" maxlength="50" required>
+                                    </span>
+                                    <span class="formLabelBox">
+                                        <input type="text" placeholder="Subject" id="contactSubject" maxlength="50" required>
+                                    </span>
+                                    <span class="formLabelBox">
+                                        <textarea placeholder="Your message here..." id="contactMessage" rows="5" maxlength="3000" required></textarea>
+                                    </span>
+                                    <span class="contactButtons">
+                                        <input type="submit">
+                                        <div class="solidGrayBtn" id="contactCancel">Cancel</div>
+                                    </span>
+                                </form> `
+        $('.viewBox').append(contactUsHTML);
+    }
+});
+
+$('.viewBox').on('click', '#contactCancel', function(){
+    $('#contactUsForm').remove();
+});
+
+$('.viewBox').on('click', '#contactUsCompleteOK', function(){
+    $('#contactUsComplete').remove();
+});
+
+$('.viewBox').on('submit', '#contactUsForm', function(e) {
+    e.preventDefault();
+    console.log("submit")
+    const contactName = $('#contactName').val();
+    const contactEmail = $('#contactEmail').val();
+    const contactSubject = $('#contactSubject').val();
+    const contactMessage = $('#contactMessage').val();
+    const requestCurrentTime = new Date().toISOString();
+    
+    const contactInfo =  `{
+        "name": "${cleanString(contactName)}",
+        "email": "${contactEmail}",
+        "subject": "${cleanString(contactSubject)}",
+        "message": "${cleanString(contactMessage)}"
+    }`
+
+    let update = JSON.parse(contactInfo);
+    console.log(update);
+    db.collection("ContactUs").doc(requestCurrentTime).set(update).then(() => {
+        $('#contactUsForm').remove();
+        const contactSent = `   <div id="contactUsComplete">
+                                    <h3>Thank you for reaching out.<br>Your message has been sent.</h3>
+                                    <button id="contactUsCompleteOK" class="solidGreenBtn">OK</button>
+                                </div>  `
+        $('.viewBox').append(contactSent);
+
+    }).catch(err => {
+        console.log(err);
+    });
+});
