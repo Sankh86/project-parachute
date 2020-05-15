@@ -30,8 +30,10 @@
 					<a href="onboard-therapist.html" class="navItem">I'm a Therapist</a>
 					<a href="parachute-members.html" class="navItem">I'm a Frontliner</a>
 					<a href="faq.html" class="navItem">FAQ</a>
+					<span class="socialWrapper">
+						<img class="socialIcon contactUs" src="img/128pxContact.png" title="Contact Us">
+					</span>
 					<!-- <a href="https://www.eleos.health/"><img class="eleosPicture" src="img/Eleos Logo White 2019.png"></a> -->
-					
 				</nav>
 			</section>
 		</header>
@@ -230,8 +232,16 @@
 						<p class="formCheckText">required</p>
 					</span>
 					<span class="formLabelBox">
-						<label>If you are temporarily working on the frontliners in a different state, please let us know <span style="font-weight: bold; margin:0; padding: 0;">which state</span> and <span style="font-weight: bold; margin:0; padding: 0;">how long</span> you will be staying there.:</label>
+						<label style="padding-bottom: 5px;">Are you currently working on the frontlines in a different state?</label>
+						<input type="radio" id="isOOS" class="formCheckbox" name="requestOOSConfirm" value="Yes" required>
+						<label for="isOOS">Yes</label>
+						<input type="radio" id="isNotOOS" class="formCheckbox" name="requestOOSConfirm" value="No" required>
+						<label for="isNotOOS">No</label>
+					</span>
+					<span class="formLabelBox" id="frontlinerOutOfState">
+						<label>Please let us know <span style="font-weight: bold; margin:0; padding: 0;">which state</span> and <span style="font-weight: bold; margin:0; padding: 0;">how long</span> you will be staying there.:</label>
 						<input type="text" placeholder="Enter Here" id="requestTempState" maxlength="1000">
+						<p class="formCheckText">required</p>
 					</span>
 					<span class="formLabelBox">
 						<label>Describe your profession.</label>
@@ -260,6 +270,7 @@
 			</section>
 		</main>
 		<footer>
+			<span class="contactFooter contactUs">Contact Us</span>
 			<a class="eleosFooterLogo" href="https://www.eleos.health/">Supported by<img class="eleosFooter" src="img/Eleos Logo White 2019.png"></a>
 			<p title="Copyright Info">&copy;2020 David Cheatham ~ All Rights Reserved</p>
 		</footer>

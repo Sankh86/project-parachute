@@ -193,11 +193,15 @@ $('input:radio[name="onboardLicenseType"]').change(function() {
             $('#stateBoxB').show();
             $('#stateBoxC').show();
             $('#provisionalInfo').hide();
+            if($('#onboardSupervisorName').prop('required')) {$('#onboardSupervisorName').prop('required', false)}
+
+
         } else {
             $('#supervisorNameBox').show();
             $('#stateBoxB').hide();
             $('#stateBoxC').hide();
             $('#provisionalInfo').show();
+            if(!($('#onboardSupervisorName').prop('required'))) {$('#onboardSupervisorName').prop('required', true)}
         }
 
     });
@@ -711,6 +715,21 @@ $('#requestApptBox').submit(function(e) {
 
 
 });
+
+$('#frontlinerOutOfState').hide();
+$('input:radio[name="requestOOSConfirm"]').change(function() {
+    if ($(this).val() == 'Yes') {
+        $('#frontlinerOutOfState').show();
+        if(!($('#requestTempState').prop('required'))) {$('#requestTempState').prop('required', true)}
+
+
+    } else {
+        $('#frontlinerOutOfState').hide();
+        if($('#requestTempState').prop('required')) {$('#requestTempState').prop('required', false)}
+        }
+
+    });
+
 
 //  ********** Contact Form **********
 
