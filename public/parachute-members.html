@@ -23,10 +23,11 @@
 		<script src="js/app-min.js" defer></script>
 	</head>
 	<body>
+		
 		<header>
 			<section class="topMenuFrame centerFlex">
 				<a href="index.html" id="bannerLink"><img class="bannerPicture" src="img/ProjectParachute_words.png"></a>
-				<nav>
+				<nav class="topMenu">
 					<a href="onboard-therapist.html" class="navItem">I'm a Therapist</a>
 					<a href="parachute-members.html" class="navItem">I'm a Frontliner</a>
 					<a href="faq.html" class="navItem">FAQ</a>
@@ -35,6 +36,7 @@
 					</span>
 					<!-- <a href="https://www.eleos.health/"><img class="eleosPicture" src="img/Eleos Logo White 2019.png"></a> -->
 				</nav>
+				<img class="burgerMenu" src="img/Burger.png">
 			</section>
 		</header>
 
@@ -91,7 +93,9 @@
 					</div>
 					<div id="therapistQueryBox">
 						<h3 class="faqQuestion">Therapist Location</h3>
-						<p class="faqAnswer">Due to licensing board regulations, therapists have to be licensed in the state where you reside in order  to provide telehealth services to you.</p>
+						<p class="faqAnswer">Due to licensing board regulations, therapists have to be licensed in the state where you are currently living in order  to provide telehealth services to you.</p>
+						<h3 class="faqQuestion">Temporarily working on the frontlines away from home?</h3>
+						<p class="faqAnswer">Select a therapist in the state where you will be <span style="text-decoration: underline;">physically present</span> over the next few months. For example, if you plan to return home in 1-2 weeks, select a therapist in your <span style="text-decoration: underline;">home state</span>. If you plan to remain in a state where you work for a <span style="text-decoration: underline;">month or longer</span>, select a therapist in the state where you are <span style="text-decoration: underline;">currently located</span>. When you return home, you may need to transition to a different therapist who is licensed in your home state. Please email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a> if you have any questions or concerns.</p>
 						<h3 class="faqQuestion">Therapist Availability</h3>
 						<p class="faqAnswer">Therapists availability reflects their office hours or times they set aside for pro-bono work. Specific appointment times may not be available, and therapists may have additional availability that is not listed here.  <span style="font-weight: bold; text-decoration: underline;">The therapist will contact you directly to confirm their availability and schedule an appointment.</span>.</p>
 						<h3 class="faqQuestion">Insurance</h3>
@@ -239,8 +243,12 @@
 						<label for="isNotOOS">No</label>
 					</span>
 					<span class="formLabelBox" id="frontlinerOutOfState">
-						<label>Please let us know <span style="font-weight: bold; margin:0; padding: 0;">which state</span> and <span style="font-weight: bold; margin:0; padding: 0;">how long</span> you will be staying there.:</label>
-						<input type="text" placeholder="Enter Here" id="requestTempState" maxlength="1000">
+						<p style="color: black;" class="formCheckText">Select a therapist in the state where you will be <span style="text-decoration: underline; font-size: 12px;">physically present</span> over the next few months. For example, if you plan to return home in 1-2 weeks, select a therapist in your <span style="text-decoration: underline; font-size: 12px;">home state</span>. If you plan to remain in a state where you work for a <span style="text-decoration: underline; font-size: 12px;">month or longer</span>, select a therapist in the state where you are <span style="text-decoration: underline; font-size: 12px;">currently located</span>. When you return home, you may need to transition to a different therapist who is licensed in your home state. Please email us at <a style="font-size: 12px;" href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a> if you have any questions or concerns.<br>If you have previously selected a therapist from an incorect state, refresh the page and submit a new request.</p>
+						<label>Please let us know <span style="font-weight: bold; margin:0; padding: 0;">which state</span></label>
+						<input type="text" placeholder="Enter Here" id="requestTempState" maxlength="50">
+						<p class="formCheckText">required</p>
+						<label><span style="font-weight: bold; margin:0; padding: 0;">how long</span> will you be staying there?</label>
+						<input type="text" placeholder="Enter Here" id="requestTempHowLong" maxlength="50">
 						<p class="formCheckText">required</p>
 					</span>
 					<span class="formLabelBox">

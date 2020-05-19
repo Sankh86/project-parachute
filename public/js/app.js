@@ -171,7 +171,10 @@ function uploadTherapistData() {
     });
 }
 
-
+//  ********** Burger Menu **********
+$('.topMenuFrame').on('click', '.burgerMenu', function(){
+    $('.topMenu').toggleClass('isActive');
+});
 
 //  ********** Onboard Therapist Page **********
 
@@ -677,6 +680,7 @@ $('#requestApptBox').submit(function(e) {
     const requestPhoneNumber = $('#requestPhoneNumber').val();
     const requestState = $('#requestState').val();
     const requestTempState = cleanString($('#requestTempState').val());
+    const requestTempHowLong = cleanString($('#requestTempHowLong').val());
     const requestProfession = cleanString($('#requestProfession').val());
     const requestImpact = cleanString($('#requestImpact').val());
     
@@ -690,6 +694,7 @@ $('#requestApptBox').submit(function(e) {
         "phone": "${requestPhoneNumber}",
         "state": "${requestState}",
         "tempState": "${requestTempState}",
+        "tempHowLong": "${requestTempHowLong}",
         "profession": "${requestProfession}",
         "impact": "${requestImpact}",
         "therapistID": "${therapistID}",
@@ -721,12 +726,14 @@ $('input:radio[name="requestOOSConfirm"]').change(function() {
     if ($(this).val() == 'Yes') {
         $('#frontlinerOutOfState').show();
         if(!($('#requestTempState').prop('required'))) {$('#requestTempState').prop('required', true)}
+        if(!($('#requestTempHowLong').prop('required'))) {$('#requestTempHowLong').prop('required', true)}
 
 
     } else {
         $('#frontlinerOutOfState').hide();
         if($('#requestTempState').prop('required')) {$('#requestTempState').prop('required', false)}
-        }
+        if($('#requestTempHowLong').prop('required')) {$('#requestTempHowLong').prop('required', false)}
+    }
 
     });
 

@@ -147,16 +147,22 @@ header {
 }
 
 .topMenuFrame {
+    position: relative;
     align-items: flex-end;
     margin: 0 auto;
     z-index: 100;
 }
 
 nav {
+    position: absolute;
+    top: 50px;
+    right: 0;
     display: none;
     align-items: center;
     margin-left: 50px;
     z-index: 110;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .navItem {
@@ -166,8 +172,11 @@ nav {
     padding: 5px 10px;
     margin: 0 5px;
     border-bottom: 2px solid #67dcfc;
-    font: normal normal normal 16px/1.4em worksans-extralight,'work sans',sans-serif;
+    border-top: 2px solid #67dcfc;
+    font: normal normal normal 20px/1.4em worksans-extralight,'work sans',sans-serif;
     border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    z-index: 1000;
 }
 
 #covid {
@@ -176,11 +185,22 @@ nav {
 
 .navItem:hover,
 #covid:hover,
-a:hover {
+a:hover,
+.burgerMenu:hover {
     color: #67dcfc;
 }
 
 
+.burgerMenu {
+    height: 35px;
+    width: 50px;
+    margin: auto 0 auto 0;
+    padding: 5px 10px;
+}
+
+.isActive {
+    display:flex;
+}
 
 /* Main */
 
@@ -793,6 +813,8 @@ footer p {
 
     nav {
         display: flex;
+        flex-direction: row;
+        position: static;
     }
 
     .blueIcon {
@@ -813,6 +835,15 @@ footer p {
 
     .therapistSelect a {
         max-width: 400px;
+    }
+
+    .burgerMenu {
+        visibility: hidden;
+    }
+
+    .navItem {
+        font: normal normal normal 16px/1.4em worksans-extralight,'work sans',sans-serif;
+        border-top: none;
     }
 }
 
