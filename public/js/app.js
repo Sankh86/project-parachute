@@ -171,10 +171,79 @@ function uploadTherapistData() {
     });
 }
 
+
+//  *************** Header & Menu ***************
+
 //  ********** Burger Menu **********
 $('.topMenuFrame').on('click', '.burgerMenu', function(){
     $('.topMenu').toggleClass('isActive');
 });
+
+//  ********** Therapist Sub-Menu **********
+$('.therapistSubmenu').hide();
+$('.therapistMenu').mouseover(function() {
+    $('.therapistSubmenu').show();
+});
+$('.therapistMenu').mouseleave(function() {
+    $('.therapistSubmenu').hide();
+});
+
+
+//  ********** Therapist Sub-Menu **********
+$('#loginForm').hide();
+$('.loginMenuButton').click(function() {
+    $('#loginForm').show();
+});
+
+//  ********** Login Menu **********
+$('#loginCancel').click(function() {
+    $('#loginForm').hide();
+});
+
+
+
+//  *************** Login/Logout Auth ***************
+
+//  ********** Login **********
+
+$('#loginForm').submit(function(e) {
+    e.preventDefault();
+
+    const loginEmail = $('#loginEmail').val();
+    const loginPassword = $('#loginPassword').val();
+
+    auth.signInWithEmailAndPassword(loginEmail, loginPassword).then(cred => {
+        console.log("User Logged In")
+        loginForm.reset();
+        $('#loginForm').hide();
+        window.open("profile.html", '_self');
+    }).catch(err => {
+        $('#loginErr').text(err.message);
+    });
+});
+
+// ***** Auth State Changes *****
+let therapistProfile = {};
+auth.onAuthStateChanged(user => {
+    if(user) {
+        $('#profileButton').show();
+        $('.therapistMenu').hide();
+    } else {
+        $('#profileButton').hide();
+        $('.therapistMenu').show();
+        therapistProfile = {};
+    }
+});
+
+
+//  *************** Profile Page ***************
+
+
+
+
+
+
+
 
 //  ********** Onboard Therapist Page **********
 
@@ -461,20 +530,13 @@ $('#onboardForm').submit(function(e) {
         uploadTherapistData();
     }).catch(err => {
         if (err.code === "auth/email-already-in-use") {
-            auth.signInWithEmailAndPassword(onboardEmail, "project-parachute").then(cred => {
-                console.log("account logged in")
-                $('#confirmCreated').empty();
-                $('#confirmCreated').html(
+            $('#confirmCreated').empty();
+            $('#confirmCreated').html(
                     `
                     <h3 style="text-align: left;">Our records indicate you have previously registered as a therapist with Project Parachute.</h3>
-					<p style="text-align: left;">Your profile has been updated with the information you just provided. Please keep in mind that any new profile submission overrides all of your old information, so please make sure the form is filled out completely. If you wish, you may fill out this form again.</p>
-					<p style="text-align: left;">We are working on the functionality to allow you to login and update your profile manually and we will notify you once this is available.</p>
-					<p style="text-align: left;">Questions? See our <a href = "faq.html">FAQ page</a> or email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
+					<p style="text-align: left;">Please log in to update your profile.</p>
                     `
-                );
-
-                uploadTherapistData();
-            });
+            );
         } else {
             console.log(err.code);
         }

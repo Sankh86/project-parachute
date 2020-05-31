@@ -6,12 +6,12 @@
 		<link rel="apple-touch-icon-precomposed" href="img/favicon-152.png">
 		<link rel="icon" sizes="16x16" href="img/parachute16px.ico">
 		<link rel="icon" sizes="32x32" href="img/parachute32px.ico">
-		<link rel="icon" sizes="128x128" href="img/parachute128px.ico.ico">
+		<link rel="icon" sizes="128x128" href="img/parachute128px.ico">
 		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
 		<!-- Must Be First -->
-		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app-min.js" defer></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer></script>
 		<!-- Firebase Addins -->
 		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer></script>
 		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js" defer></script>
@@ -28,12 +28,32 @@
 			<section class="topMenuFrame centerFlex">
 				<a href="index.html" id="bannerLink"><img class="bannerPicture" src="img/ProjectParachute_words.png"></a>
 				<nav class="topMenu">
-					<a href="onboard-therapist.html" class="navItem">I'm a Therapist</a>
+					<a href="profile.html" class="navItem" id="profileButton">My Profile</a>
+					<span class="navItem therapistMenu">I'm a Therapist
+						<span class="subNav therapistSubmenu">
+							<span class="navItem loginMenuButton">Log In</span>
+							<a href="onboard-therapist.html" class="navItem">Volunteer</a>
+						</span>
+					</span>
 					<a href="parachute-members.html" class="navItem">I'm a Frontliner</a>
 					<a href="faq.html" class="navItem">FAQ</a>
 					<span class="socialWrapper">
 						<img class="socialIcon contactUs" src="img/128pxContact.png" title="Contact Us">
 					</span>
+					
+					<form id="loginForm">
+						<h3>Therapist Login</h3>
+						<label for="loginEmail">E-mail:</label>
+						<input type="email" id="loginEmail" placeholder="someone@email.com" size="25">
+						<label for="loginPassword">Password:</label>
+						<input type="password" id="loginPassword" size="25">
+						<p id="loginErr" style="font-size: 12px; color: red;"></p>
+						<span style="display: flex; justify-content: center;">
+							<input style="font-size: 14px" type="submit" id="loginButton" value="Sign In">
+							<div style="font-size: 14px" class="solidGrayBtn" id="loginCancel">Cancel</div>
+						</span>
+					</form>
+
 					<!-- <a href="https://www.eleos.health/"><img class="eleosPicture" src="img/Eleos Logo White 2019.png"></a> -->
 				</nav>
 				<img class="burgerMenu" src="img/Burger.png">
@@ -45,10 +65,10 @@
 				<img class="parachuteLogo" src="img/ProjectParachute_logo_rev.png">
 			</section>
 			<section class="viewBox">
-				<nav>
+				<div>
 					<a href="#faqFrontliner" class="navItem">Frontliner FAQ</a>
 					<a href="#faqTherapist" class="navItem">Therapist FAQ</a>
-				</nav>
+				</div>
 				<h1 id="faqFrontliner">Frontliner FAQ</h1>
 				<h3 class="faqQuestion">What happens after I submit my form?</h3>
 				<p class="faqAnswer">A volunteer will review your form and send a booking request to your selected therapist. We’ll send on a confirmation email. Your new therapist will contact you (email or phone) within a few days to schedule your appointment .</p>
@@ -91,8 +111,6 @@
 				<p class="faqAnswer">It is up to you how many clients you can take. If you are unable to take more clients, please notify us ASAP by emailing <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a> and we will hide your profile on our website. <span style="text-decoration: underline;">If your profile is visible on our website, you may receive another booking</span>.</p>
 				<h3 class="faqQuestion">What if I am unable to take any more clients?</h3>
 				<p class="faqAnswer">Please email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a> and we can hide your profile. If you have more availability in the future, you can always ask us to re-activate your profile.</p>
-				<h3 class="faqQuestion">How long will I do therapy with this client?</h3>
-				<p class="faqAnswer">That’s entirely up to you. You may want to set this up as time-limited support or you may want to have something more open-ended. Just make sure that you are establishing those expectations for yourself and for your patient ahead of time.</p>
 				<h3 class="faqQuestion">How long will I do therapy with this client?</h3>
 				<p class="faqAnswer">That’s entirely up to you. You may want to set this up as time-limited support or you may want to have something more open-ended. Just make sure that you are establishing those expectations for yourself and for your patient ahead of time.</p>
 				<h3 class="faqQuestion">Teletherapy?</h3>

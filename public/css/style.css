@@ -109,14 +109,17 @@ header {
 }
 
 #contactUsForm,
-#contactUsComplete {
-    width: 95%;
-    max-width: 600px;
+#contactUsComplete,
+#loginForm,
+#pwUpdateForm,
+#confirmProfileUpdate {
+    max-width: 95%;
+    max-height: 95%;
     background-color: #e7f1f5;
     border: 3px solid #03a7ff;
     border-radius: 20px;
     padding: 10px;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -125,11 +128,18 @@ header {
 
 }
 
-#contactUsComplete {
+#contactUsComplete,
+#loginForm,
+#pwUpdateForm,
+#confirmProfileUpdate {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#loginForm {
+    color: black;
 }
 
 #contactUsForm span {
@@ -166,6 +176,7 @@ nav {
 }
 
 .navItem {
+    position: relative;
     color: white;
     background-color: #05143f;
     text-decoration: none;
@@ -177,6 +188,23 @@ nav {
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
     z-index: 1000;
+    cursor: pointer;
+}
+
+.subNav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: -5px;
+    top: 33px;
+}
+
+.therapistMenu {
+    width: 110px;
+}
+
+.therapistSubmenu * {
+    width: 110px;
 }
 
 #covid {
@@ -838,7 +866,7 @@ footer p {
     }
 
     .burgerMenu {
-        visibility: hidden;
+        display: none;
     }
 
     .navItem {
