@@ -55,10 +55,14 @@ function LoadProfile() {
 
         if(therapistProfile['showProfile']) {
             $('#hideProfile').show();
+            $('#hideProfileButton').show();
             $('#showProfile').hide();
+            $('#showProfileButton').hide();
         } else {
             $('#hideProfile').hide();
+            $('#hideProfileButton').hide();
             $('#showProfile').show();
+            $('#showProfileButton').show();
         }
 
 
@@ -264,11 +268,20 @@ $("#updateImage").change(function() {
     }
   });
 
+// ********* Show Update Profile **********  
+$('#updateProfileWrapper').hide();
+$( "#updateProfileButton" ).click(function() {
+    $( "#updateProfileButton" ).hide();
+    $('#updateProfileWrapper').show();
+});
+
 
 // ********* Update Profile Button **********
 $('#profileForm').submit(function(e) {
     e.preventDefault();
     updateTherapistData();
+    $('#updateProfileWrapper').hide();
+    $( "#updateProfileButton" ).show();
 });
 
 // ********* Change PW Button **********

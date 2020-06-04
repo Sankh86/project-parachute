@@ -200,6 +200,38 @@ $('#loginCancel').click(function() {
     $('#loginForm').hide();
 });
 
+//  ********** Password Email Menu **********
+$('#passwordResetEmailForm').hide();
+$('#showPasswordResetForm').click(function() {
+    $('#loginForm').hide();
+    $('#passwordResetEmailForm').show();
+});
+
+$('#passwordResetConfirm').hide();
+//  ********** Password Email Submit **********
+$('#passwordResetEmailForm').submit(function(e) {
+    e.preventDefault();
+
+    const resetEmail = $('#passwordResetEmail').val();
+
+    auth.sendPasswordResetEmail(resetEmail).then(function() {
+        passwordResetEmailForm.reset();
+        $('#passwordResetButtons').hide();
+        $('#passwordResetEmailErr').text(`Email sent to ${resetEmail}.  Check junkmail if not seen within 3-5 minutes.`);
+        $('#passwordResetConfirm').show();
+    }).catch(function(error) {
+        $('#passwordResetEmailErr').text(err.message);
+    });
+});
+
+//  ********** Password Email Cancel/OK **********
+$('#passwordResetCancel').click(function() {
+    $('#passwordResetEmailForm').hide();
+});
+$('#passwordResetConfirm').click(function() {
+    $('#passwordResetEmailForm').hide();
+});
+
 
 
 //  *************** Login/Logout Auth ***************
@@ -218,7 +250,12 @@ $('#loginForm').submit(function(e) {
         $('#loginForm').hide();
         window.open("profile.html", '_self');
     }).catch(err => {
-        $('#loginErr').text(err.message);
+        console.log(err.code)
+        if (err.code === "auth/user-not-found") {
+            $('#loginErr').text("There is no account associated with this email address.");
+        } else {
+            $('#loginErr').text(err.message);
+        }
     });
 });
 
@@ -353,6 +390,24 @@ $('#onboardPhoneNumber').change(function() {
         checkPhoneNumber = true;
     } else {
         checkPhoneNumber = false;
+    }
+});
+
+var checkPasswordA = false;
+$('#onboardPassword').change(function() {
+    if ($(this).val() !== "") {
+        checkPasswordA = true;
+    } else {
+        checkPasswordA = false;
+    }
+});
+
+var checkPasswordB = false;
+$('#onboardPasswordConfirm').change(function() {
+    if ($(this).val() !== "") {
+        checkPasswordB = true;
+    } else {
+        checkPasswordB = false;
     }
 });
 
@@ -496,7 +551,7 @@ var checkStates = false;
 var formOnboardComplete = false;
 $('input').change(function() {
     checkStates = (($('#onboardStateA').val() !== "" || $('#onboardStateB').val() !== "" || $('#onboardStateC').val() !== "") && checkStateA && checkStateB && checkStateC);
-    formOnboardComplete = checkName && checkEmail && checkPhoneNumber && checkDescription && checkStates && checkTimezone && checkConsent;
+    formOnboardComplete = checkName && checkEmail && checkPhoneNumber && checkDescription && checkStates && checkTimezone && checkConsent && checkPasswordA && checkPasswordB;
     if (formOnboardComplete === true) {
         $("#onboardSubmit").attr("disabled", false);
 
@@ -508,7 +563,7 @@ $('input').change(function() {
 });
 $('select').change(function() {
     checkStates = (($('#onboardStateA').val() !== "" || $('#onboardStateB').val() !== "" || $('#onboardStateC').val() !== "") && checkStateA && checkStateB && checkStateC);
-    formOnboardComplete = checkName && checkEmail && checkPhoneNumber && checkDescription && checkStates && checkTimezone && checkConsent;
+    formOnboardComplete = checkName && checkEmail && checkPhoneNumber && checkDescription && checkStates && checkTimezone && checkConsent && checkPasswordA && checkPasswordB;
     if (formOnboardComplete === true) {
         $("#onboardSubmit").attr("disabled", false);
     } else {
@@ -520,27 +575,23 @@ $('select').change(function() {
 //  ***** Onboard Therapist *****
 $('#onboardForm').submit(function(e) {
     e.preventDefault();
-    $('#onboardInfoBox').hide();
-    $('#onboardForm').hide();
-    $('#creatingProfile').show();
 
     const onboardEmail = $('#onboardEmail').val();
-    auth.createUserWithEmailAndPassword(onboardEmail, "project-parachute").then(cred => {
-        console.log("account created")
-        uploadTherapistData();
-    }).catch(err => {
-        if (err.code === "auth/email-already-in-use") {
-            $('#confirmCreated').empty();
-            $('#confirmCreated').html(
-                    `
-                    <h3 style="text-align: left;">Our records indicate you have previously registered as a therapist with Project Parachute.</h3>
-					<p style="text-align: left;">Please log in to update your profile.</p>
-                    `
-            );
-        } else {
-            console.log(err.code);
-        }
-    });
+    const onboardPassword = $('#onboardPassword').val();
+    const onboardPasswordConfirm = $('#onboardPasswordConfirm').val();
+    if (onboardPassword !== onboardPasswordConfirm) {
+        $('#onboardErrorMessage').text("Password does not match, retype and try again");
+    } else {
+        auth.createUserWithEmailAndPassword(onboardEmail, onboardPassword).then(cred => {
+            console.log("account created")
+            $('#onboardInfoBox').hide();
+            $('#onboardForm').hide();
+            $('#creatingProfile').show();
+            uploadTherapistData();
+        }).catch(err => {
+            $('#onboardErrorMessage').text(err.message);
+        });
+    }
 });
 
 //  ********** Frontliner Page **********

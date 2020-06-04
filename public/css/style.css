@@ -108,11 +108,17 @@ header {
     text-decoration: underline;
 }
 
+#showPasswordResetForm {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 #contactUsForm,
 #contactUsComplete,
 #loginForm,
 #pwUpdateForm,
-#confirmProfileUpdate {
+#confirmProfileUpdate,
+#passwordResetEmailForm {
     max-width: 95%;
     max-height: 95%;
     background-color: #e7f1f5;
@@ -131,14 +137,16 @@ header {
 #contactUsComplete,
 #loginForm,
 #pwUpdateForm,
-#confirmProfileUpdate {
+#confirmProfileUpdate,
+#passwordResetEmailForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#loginForm {
+#loginForm,
+#passwordResetEmailForm {
     color: black;
 }
 
@@ -195,13 +203,10 @@ nav {
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: -5px;
-    top: 33px;
+    left: -135px;
+    top: -2px;
 }
 
-.therapistMenu {
-    width: 110px;
-}
 
 .therapistSubmenu * {
     width: 110px;
@@ -460,6 +465,7 @@ input[type="submit"]:hover {
 .formLabelBox input[type=text],
 .formLabelBox input[type=email],
 .formLabelBox input[type=tel],
+.formLabelBox input[type=password],
 textarea,
 .formStateWrap input,
 .formStateWrap select,
@@ -843,6 +849,16 @@ footer p {
         display: flex;
         flex-direction: row;
         position: static;
+    }
+
+    .subNav {
+        left: -5px;
+        top: 34px;
+        
+    }
+
+    .therapistMenu {
+        width: 110px;
     }
 
     .blueIcon {
