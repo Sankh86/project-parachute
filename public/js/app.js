@@ -188,14 +188,23 @@ $('.therapistMenu').mouseleave(function() {
     $('.therapistSubmenu').hide();
 });
 
+//  ********** Frontliner Sub-Menu **********
+$('.frontlinerSubmenu').hide();
+$('.frontlinerMenu').mouseover(function() {
+    $('.frontlinerSubmenu').show();
+});
+$('.frontlinerMenu').mouseleave(function() {
+    $('.frontlinerSubmenu').hide();
+});
 
-//  ********** Therapist Sub-Menu **********
+
+//  ********** Login Form Show **********
 $('#loginForm').hide();
 $('.loginMenuButton').click(function() {
     $('#loginForm').show();
 });
 
-//  ********** Login Menu **********
+//  ********** Login Menu Cancel **********
 $('#loginCancel').click(function() {
     $('#loginForm').hide();
 });
@@ -217,7 +226,7 @@ $('#passwordResetEmailForm').submit(function(e) {
     auth.sendPasswordResetEmail(resetEmail).then(function() {
         passwordResetEmailForm.reset();
         $('#passwordResetButtons').hide();
-        $('#passwordResetEmailErr').text(`Email sent to ${resetEmail}.  Check junkmail if not seen within 3-5 minutes.`);
+        $('#passwordResetEmailErr').text(`Email sent to ${resetEmail}.  Check spam/junk folder if received in 3-5 minutes.`);
         $('#passwordResetConfirm').show();
     }).catch(function(error) {
         $('#passwordResetEmailErr').text(err.message);
@@ -917,4 +926,202 @@ $('.viewBox').on('submit', '#contactUsForm', function(e) {
     }).catch(err => {
         console.log(err);
     });
+});
+
+
+//  ********** Groups Page**********
+
+//  ***** Questionnaire Logic *****
+$('#questionnaireGroup').hide();
+$('#agreeTOSGroup').click(function() {
+    $('#tosGroup').hide();
+    $('#questionnaireGroup').show();
+});
+
+$('#notFrontlinerMessageGroup').hide();
+$('#therapistQueryBoxGroup').hide();
+
+$('input:radio[name="frontlinerConfirmGroup"]').change(function() {
+    $('#frontlinerGreeterGroup').hide();
+    if ($(this).val() == 'Yes') {
+        $('#therapistQueryBoxGroup').show();
+
+
+    } else {
+        $('#notFrontlinerMessageGroup').show();
+
+        
+    }
+
+});
+
+$('#queryGroups').hide();
+$('#queryStateGroup').change(function() {
+    if ($(this).val() !== "") {
+        $('#queryGroups').show();
+    } else {
+        $('#queryGroups').hide();
+    }
+});
+
+
+
+//  ********** Request Appt Button & Form **********
+$('#requestApptBoxGroup').hide();
+let therapistIDGroup = "";
+let therapistNameGroup = "";
+$('#therapistResultsGroup').on('click', '.requestApptBtnGroup', function(){
+    therapistIDGroup = this.id
+    therapistIDGroup = therapistIDGroup.substr(0, therapistIDGroup.indexOf('-'));
+    therapistNameGroup = $(`#${therapistIDGroup}-name`).html();
+    $('#requestSelectedTherapistGroup').html(`${therapistNameGroup} Selected`);
+
+    $('#therapistResultsGroup').hide();
+    $('#requestApptBoxGroup').show();
+
+});
+
+$('#requestCompleteBoxGroup').hide();
+
+//  ********** Group Query **********
+$('#therapistResultsGroup').hide();
+let queryDataGroup =  []
+$( "#queryGroups" ).click(function() {
+    $('#questionnaireGroup').hide();
+    queryDataGroup =  [];
+    const stateLookup = $('#queryStateGroup').val();
+    
+    db.collection('Groups')
+        .where('licenseState', 'array-contains-any', [stateLookup, 'All'])
+        .get().then((snap) => {
+        snap.forEach((doc) => {
+            let n = queryDataGroup.length
+            queryDataGroup[n] = {};
+            queryDataGroup[n]['id'] = doc.id;
+            queryDataGroup[n]['availability'] = doc.data().availability;
+            queryDataGroup[n]['bio'] = doc.data().bio;
+            queryDataGroup[n]['description'] = doc.data().description;
+            queryDataGroup[n]['groupName'] = doc.data().groupName;
+            queryDataGroup[n]['picture'] = doc.data().picture;
+            queryDataGroup[n]['sortValue'] = Math.random();
+        });
+    }).then(() => {
+        queryDataGroup.sort((a, b) => a.sortValue - b.sortValue);
+
+        if(queryDataGroup.length > 0) {
+            $('#therapistResultsGroup').empty();
+            $('#therapistResultsGroup').show();
+            $.each(queryDataGroup, function(index, value) {
+                const id = queryDataGroup[index]['id']
+
+                const profileHTML = `    <section class="profileWrap">
+                                            <div class="profileImageWrap">
+                                                <img id="${id}-picture" class="profileImage" src="#" alt="Your Profile Picture" />
+                                            </div>
+                                            <div class="profileInfoWrap">
+                                                <div class="profileTitle">
+                                                    <h2 id="${id}-name"></h2>
+                                                </div>
+                                                <div class="profileDetails">
+                                                    <p id="${id}-description" class="profileDescription"></p>
+                                                    <p id="${id}-bio" class="profileDescription" style="margin-top: 15px;"></p>
+                                                </div>
+                                            </div>
+                                            <div class="availabilityWrap">
+                                                <p id="${id}-timeZone" class="availabilityTitle">Availability</p>
+                                                <p id="${id}-availability" class="availabilityBlock"></p>
+                                                <button class="requestApptBtnGroup" id="${id}-requestAppt">I'm Interested</button>
+                                            </div>
+                                        </section>  `
+                $('#therapistResultsGroup').append(profileHTML);
+                
+                $(`#${id}-name`).html(`${queryDataGroup[index]['groupName']}`);
+                
+                if (queryDataGroup[index]['description'] !== "") {
+                    $(`#${id}-description`).html(`${queryDataGroup[index]['description']}`);
+                }
+                if (queryDataGroup[index]['bio'] !== "") {
+                    $(`#${id}-bio`).html(`${queryDataGroup[index]['bio']}`);
+                }
+                if (queryDataGroup[index]['availability'] !== "") {
+                    $(`#${id}-availability`).html(`${queryDataGroup[index]['availability']}`);
+                }
+            
+                
+                if (queryDataGroup[index]['picture'] !== "") {
+                    const photoLookup = `groupsPhotos/${queryDataGroup[index]['picture']}`
+                storage.ref(photoLookup).getDownloadURL().then((url) => {
+                        $(`#${id}-picture`).attr('src', url)
+                    }).catch(err => {
+                        $(`#${id}-picture`).attr('src', 'img/parachute-logo.png')
+                    });
+                } else {
+                    $(`#${id}-picture`).attr('src', 'img/parachute-logo.png');
+                }
+            });
+        } else {
+            $('#therapistResultsGroup').show();
+        }
+    });
+});
+
+$('#requestApptBoxGroup').submit(function(e) {
+    e.preventDefault();
+    console.log("request submit");
+    const requestName = cleanString($('#requestName').val());
+    const requestEmail = $('#requestEmail').val();
+    const requestPhoneNumber = $('#requestPhoneNumber').val();
+    const requestState = $('#requestState').val();
+    const requestTempState = cleanString($('#requestTempState').val());
+    const requestTempHowLong = cleanString($('#requestTempHowLong').val());
+    const requestProfession = cleanString($('#requestProfession').val());
+    const requestImpact = cleanString($('#requestImpact').val());    
+    const requestWhereUHear = cleanString($('#requestWhereUHear').val());
+    const requestCurrentTime = new Date().toISOString();
+    let therapistName = "";
+    let therapistGroupName = "";
+    let therapistEmail = "";
+    let therapistPhone = "";
+
+    db.collection('Groups').doc(therapistIDGroup).get().then((doc) => {
+        therapistName = doc.data().therapistName;
+        therapistGroupName = doc.data().groupName;
+        therapistEmail = doc.data().email;
+        therapistPhone = doc.data().phone;
+
+        const fbRequest =  `{
+            "name": "${requestName}",
+            "email": "${requestEmail}",
+            "phone": "${requestPhoneNumber}",
+            "state": "${requestState}",
+            "tempState": "${requestTempState}",
+            "tempHowLong": "${requestTempHowLong}",
+            "profession": "${requestProfession}",
+            "impact": "${requestImpact}",
+            "therapistName": "${therapistName}",
+            "therapistGroupName": "${therapistGroupName}",
+            "therapistEmail": "${therapistEmail}",
+            "therapistPhone": "${therapistPhone}"
+        }`
+
+        let update = JSON.parse(fbRequest);
+        db.collection("GroupRequests").doc(requestCurrentTime).set(update).then(() => {
+            db.collection("GroupRequests").doc(requestCurrentTime).delete().then(() => {
+                $('#requestApptBoxGroup').trigger("reset");
+                $('#requestApptBoxGroup').hide();
+                $('#requestCompleteBoxGroup').show();    
+            });
+        }).catch(err => {
+            console.log(err);
+        });
+    });
+
+
+    if (requestWhereUHear.length > 0) {
+        const fbMarketing = `{"WhereUHear": "${requestWhereUHear}"}`
+        update = JSON.parse(fbMarketing);
+        db.collection("Marketing").doc(requestCurrentTime).set(update);
+    }
+
+
 });

@@ -212,6 +212,10 @@ nav {
     width: 110px;
 }
 
+.frontlinerSubmenu * {
+    width: 115px;
+}
+
 #covid {
     color: #d16a40;
 }
@@ -365,6 +369,7 @@ input[type="submit"]:disabled {
 .solidGreenBtn:hover,
 .solidGrayBtn:hover,
 .requestApptBtn:hover,
+.requestApptBtnGroup:hover,
 input[type="submit"]:hover {
     color: white;
 }
@@ -472,6 +477,7 @@ textarea,
 .formDaySchedule input,
 #onboardTimezone,
 #queryState,
+#queryStateGroup,
 #requestState {
     padding-left: 10px;
     border: none;
@@ -479,7 +485,8 @@ textarea,
     font-size: 20px;
 }
 
-#queryState {
+#queryState,
+#queryStateGroup {
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -806,7 +813,8 @@ footer p {
     padding: 0 5px;
 }
 
-.requestApptBtn {
+.requestApptBtn,
+.requestApptBtnGroup {
     background-color: #4eff78;
     border: 2px solid #4eff78;
     font-size: 16px;
@@ -861,6 +869,10 @@ footer p {
         width: 110px;
     }
 
+    .frontlinerMenu {
+        width: 115px;
+    }
+
     .blueIcon {
         display: inline-block;
     }
@@ -903,6 +915,10 @@ footer p {
 
     .availabilityTitle {
         border-top-right-radius: 10px;
+    }
+    
+    .availabilityWrap {
+        max-width: 250px;
     }
 
 }

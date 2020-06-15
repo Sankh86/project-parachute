@@ -87,20 +87,21 @@
 				<img class="parachuteLogo" src="img/ProjectParachute_logo_rev.png">
 			</section>
 			<section class="viewBox">
-				<section id="tosSection" class="memberWrap">
-					<h3 style="text-align: left;">Terms of Service:</h3>
-					<p style="text-align: left;">Project Parachute provides a service that matches therapists and healthcare frontliners. Although we attempt to verify therapists’ licenses when therapists join Project Parachute, it is your responsibility to verify your therapist’s credentials before your first session. Verify that the therapist’s license is valid in the state in which they practice and that the therapist is not subject to any license strictures preventing practice. We are not responsible for the quality of therapeutic services offered.</p>
+				<section id="tosGroup" class="memberWrap">
+					<h3 style="text-align: left;">Please read the following information, and then click continue at the bottom of this page to browse groups.</h3>
+					<p style="text-align: left;">Groups are not run or managed by Project Parachute.</p>
+					<p style="text-align: left;">Please note, group services may be either educational or therapeutic. That is, while all of our group services are run by professional mental health providers, not all of them are intended to function as therapeutic services. For example, we may list workshops and webinars on stress-reduction techniques in addition to peer groups and opportunities for group therapy.</p>
+					<p style="text-align: left;">Project Parachute provides a service that matches therapists and healthcare frontliners. Although we attempt to verify therapists’ licenses when therapists join Project Parachute, it is your responsibility to verify your therapist’s credentials before you participate in a group session. You should verify that the therapist’s license is valid in the state in which they practice and that the therapist is not subject to any license strictures preventing practice. We are not responsible for the quality of group services offered.</p>
 					<p style="text-align: left;">It is your responsibility to evaluate the accuracy, completeness or usefulness of any information, opinion, advice or other content available through this site. Please seek the advice of professionals, as appropriate, regarding the evaluation of any specific information, opinion, advice or other content.</p>
 					<p style="text-align: left;">This site is not intended to be a substitute for professional advice. Under no circumstances will we be liable for any loss or damage caused by your reliance on information obtained through the site.</p>
 					<p style="text-align: left;">We do not endorse any third party’s products, services, websites, experience or background or otherwise. We do not make any representations or warranties with regard to any materials provided by the third parties.</p>
-					<!-- <p style="text-align: left;"><a href="https://www.eleos.health/terms-of-service">Terms of Service</a></p> -->
 					
-					<btn class="solidGreenBtn" id="agreeTOS">I Agree to Terms of Service</btn>
+					
+					<btn class="solidGreenBtn" id="agreeTOSGroup">I have reviewed the information above and would like to continue</btn>
 				</section>
-				<section id="questionnaire" class="memberWrap">
-					<div id="frontlinerGreeter">
-						<p style="text-align: left;">Therapists have donated therapy time to you to say thank you for your hard work that supports us all. We know that this is a stressful time and that working with a therapist can help to manage your stress.</p>
-						<p style="text-align: left;">We can't keep anyone from hitting the ground but therapy, like a parachute, can soften your landing.</p>
+				
+				<section id="questionnaireGroup" class="memberWrap">
+					<div id="frontlinerGreeterGroup">
 						<h3 style="text-align: left;">We define a healthcare frontliner as someone who is...</h3>
 						<ul class="bulletList">
 							<li>In a face-to-face healthcare setting where they may or may not have direct contact and/or care for someone with COVID-19. This includes healthcare workers and also administrative staff (e.g. check in), cleaners, cafeteria workers, etc.</li>
@@ -108,12 +109,12 @@
 							<li>Providing mental health services to the frontline as part of their job in a healthcare setting (not exclusively over telehealth).</li>
 						</ul>
 						<h3 style="text-align: left;">Do you believe you qualify for our services for frontline health-care workers according to the definition above?</h3>
-						<input type="radio" id="isFrontliner" class="formCheckbox" name="frontlinerConfirm" value="Yes">
+						<input type="radio" id="isFrontliner" class="formCheckbox" name="frontlinerConfirmGroup" value="Yes">
 						<label for="isFrontliner">Yes</label>
-						<input type="radio" id="isNotFrontliner" class="formCheckbox" name="frontlinerConfirm" value="No">
+						<input type="radio" id="isNotFrontliner" class="formCheckbox" name="frontlinerConfirmGroup" value="No">
 						<label for="isNotFrontliner">No</label>
 					</div>
-					<div id="notFrontlinerMessage">
+					<div id="notFrontlinerMessageGroup">
 						<p style="text-align: left;">Thank you for your interest in receiving services through Project Parachute. Unfortunately, we are unable to provide services to people who do not fit our narrow definition of a COVID-19 frontliner.</p>
 						<p style="text-align: left;">We’ve included some free or low-fee options for individual care that may be helpful as you look for care. If you believe that this decision has been made in error or you have any further questions, please email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
 						<h3 style="text-align: left;">Additional Resources:</h3>
@@ -123,27 +124,15 @@
 						</ul>
 
 					</div>
-					<div id="questionTherapist">
-						<h3 style="text-align: left;">Do you currently have an individual therapist?</h3>
-						<input type="radio" id="hasTherapist" class="formCheckbox" name="therapistConfirm" value="Yes">
-						<label for="hasTherapist">Yes</label>
-						<input type="radio" id="hasNoTherapist" class="formCheckbox" name="therapistConfirm" value="No">
-						<label for="hasNoTherapist">No</label>
-					</div>
-					<div id="hasTherapistMessage">
-						<p style="text-align: left;">Thank you for your interest in receiving services through Project Parachute. At this time, we are only connecting therapists with frontliners who do not yet have therapeutic support. If you believe this decision has been made in error or you have any further questions, please email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
-					</div>
-					<div id="therapistQueryBox">
-						<h3 class="faqQuestion">Therapist Location</h3>
-						<p class="faqAnswer">Due to licensing board regulations, therapists have to be licensed in the state where you are currently living in order  to provide telehealth services to you.</p>
+
+
+					<div id="therapistQueryBoxGroup">
+						<h3 class="faqQuestion">To browse groups, please select the state in which you are currently living or are physically located.</h3>
+						<p class="faqAnswer">Due to licensing board regulations, some groups may only be offered by therapists licensed in the state where you are currently living or are physically located.</p>
 						<h3 class="faqQuestion">Temporarily working on the frontlines away from home?</h3>
-						<p class="faqAnswer">Select a therapist in the state where you will be <span style="text-decoration: underline;">physically present</span> over the next few months. For example, if you plan to return home in 1-2 weeks, select a therapist in your <span style="text-decoration: underline;">home state</span>. If you plan to remain in a state where you work for a <span style="text-decoration: underline;">month or longer</span>, select a therapist in the state where you are <span style="text-decoration: underline;">currently located</span>. When you return home, you may need to transition to a different therapist who is licensed in your home state. Please email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a> if you have any questions or concerns.</p>
-						<h3 class="faqQuestion">Therapist Availability</h3>
-						<p class="faqAnswer">Therapists availability reflects their office hours or times they set aside for pro-bono work. Specific appointment times may not be available, and therapists may have additional availability that is not listed here.  <span style="font-weight: bold; text-decoration: underline;">The therapist will contact you directly to confirm their availability and schedule an appointment.</span>.</p>
-						<h3 class="faqQuestion">Insurance</h3>
-						<p class="faqAnswer">All therapists on our site have agreed to provide pro-bono services during this first phase of the COVID-19 pandemic. However, you may want to select a therapist that takes your insurance in case you want to continue seeing them long-term.</p>
-						<h3 class="faqQuestion">Select your state and then proceed to select a therapist.</h3>
-						<select id="queryState">
+						<p class="faqAnswer">Please select the state where you are physically located. You will be able to attend groups in this state for the duration of your stay. Once you return home, please search for groups available in your home-state. If you have any questions or concerns please feel free to email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
+						<h3 class="faqQuestion">Select your state and then proceed to browse groups:</h3>
+						<select id="queryStateGroup">
 							<option value="">-Select State-</option>
 							<option value="Alabama">Alabama</option>
 							<option value="Alaska">Alaska</option>
@@ -197,16 +186,19 @@
 							<option value="Wisconsin">Wisconsin</option>
 							<option value="Wyoming">Wyoming</option>
 						</select>
-						<btn class="solidGreenBtn" id="queryTherapists">Find Therapists</btn>
+						<btn class="solidGreenBtn" id="queryGroups">Find Groups</btn>
 					</div>
 				</section>
-				<section id="therapistResults" class="memberWrap">
+				<section id="therapistResultsGroup" class="memberWrap">
 					<p>We currently do not have any therapists in this state. If you are looking for services, please email us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a> and we will do our best to find one for you.</p>
 					<p>Also, feel free to check back later as we receive new therapist submissions daily.</p>
 				</section>
-				<form class=formBox id="requestApptBox">
-					<h3 id="requestSelectedTherapist"></h3>
-					<p>Please fill out the requested personal information below:</p>
+
+
+
+				<form class=formBox id="requestApptBoxGroup">
+					<h3 id="requestSelectedTherapistGroup"></h3>
+					<p>Please fill out the requested personal information below. Your information will be forwarded to the group leader who runs the group service you’ve selected. They will reach out to you directly.</p>
 					<span class="formLabelBox">
 						<input type="text" placeholder="Full Name" id="requestName" maxlength="50" required>
 						<p class="formCheckText">required</p>
@@ -299,7 +291,7 @@
 						<p class="formCheckText">required</p>
 					</span>
 					<span class="formLabelBox">
-						<label>Briefly tell us how has COVID-19 impacted your mental health and how therapy could help you right now.</label>
+						<label>Briefly tell us how has COVID-19 impacted your mental health and how group support could help you right now.</label>
 						<textarea placeholder="Enter Here" id="requestImpact" rows="4" maxlength="1800" required></textarea>
 						<div class="formCheckText">required<p class="formCheckTextExplainer">(this information will be kept confidential)</p></div>
 					</span>
@@ -311,9 +303,11 @@
 						<input type="submit" id="requestSubmit">
 					</div>
 				</form>
-				<section id="requestCompleteBox" class="memberWrap">
-					<h3 style="text-align: left;">Thank you! Your request has been submitted.</h3>
-					<p style="text-align: left;">One of our volunteers will be in touch with you within 24 hours with a confirmation. If you have not heard from us, please check your spam folder and then email <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>.</p>
+				<section id="requestCompleteBoxGroup" class="memberWrap">
+					<h3 style="text-align: left;">Thank you for expressing interest in group support!</h3>
+					<p style="text-align: left;">You will receive a confirmation email from us shortly. Afterwards, a group leader will contact you with specific details about the group you selected.</p>
+					<p style="text-align: left;">Please add <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a> to your contact list to prevent emails from going to spam. If you do not receive a confirmation email, please contact us.</p>
+
 					<p style="text-align: left;">Questions? Check out our <a href = "faq.html">FAQ page</a></p>
 					<a href="https://www.eleos.health/emergency" class="needHelp">Are you or your loved ones in a life-threatening situation? Click here</a>
 				</section>
