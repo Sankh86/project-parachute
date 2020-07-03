@@ -174,27 +174,119 @@ function uploadTherapistData() {
 
 //  *************** Header & Menu ***************
 
+//  ********** Header Insert **********
+const headerInsert = `
+<section class="topMenuFrame centerFlex">
+<a href="index.html" id="bannerLink"><img class="bannerPicture" src="img/ProjectParachute_logo_NoTagline.png"></a>
+
+<nav class="topMenu">
+    <a href="profile.html" class="navItem" id="profileButton">My Profile</a>
+    
+    <span class="navItem topNav">About
+        <span class="subNav aboutNav">
+            <a href="mission.html" class="navItem">Mission</a>
+            <a href="" class="navItem">Team</a>
+            <a href="press.html" class="navItem">Press</a>
+        </span>
+    </span>
+
+    <span class="navItem topNav">Get Support
+        <span class="subNav supportNav">
+            <a href="parachute-members.html" class="navItem">Find a therapist</a>
+            <a href="group-support.html" class="navItem">Find group support</a>
+            <a href="" class="navItem">Additional Resources</a>
+        </span>
+    </span>
+
+    <span class="navItem topNav">Get Involved
+        <span class="subNav involvedNav">
+            <a href="onboard-therapist.html" class="navItem">Therapist sign-up</a>
+            <span class="navItem loginMenuButton">Therapist login</span>
+            <a href="" class="navItem">Volunteer sign-up</a>
+            <a href="donate.html" class="navItem">Donate</a>
+        </span>
+    </span>
+
+    <span class="navItem topNav">FAQ
+        <span class="subNav faqNav">
+            <a href="faq.html#faqFrontliner" class="navItem">Frontliners</a>
+            <a href="faq.html#faqTherapist" class="navItem">Therapists</a>
+        </span>
+    </span>
+
+    <a href="" class="navItem">Contact</a>
+
+    <span class="socialWrapper">
+        <img class="socialIcon" src="img/Facebook.png" title="Facebook">
+        <img class="socialIcon" src="img/Instagram.png" title="Instagram">
+        <img class="socialIcon" src="img/Twitter.png" title="Twitter">
+    </span>
+    
+    <form id="loginForm">
+        <h3>Therapist Login</h3>
+        <label for="loginEmail">E-mail:</label>
+        <input type="email" id="loginEmail" placeholder="someone@email.com" size="25">
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" size="25">
+        <p id="loginErr" style="font-size: 12px; color: red;"></p>
+        <span style="display: flex; justify-content: center;">
+            <input style="font-size: 14px" type="submit" id="loginButton" value="Sign In">
+            <div style="font-size: 14px" class="solidGrayBtn" id="loginCancel">Cancel</div>
+        </span>
+        <span style="font-size: 14px">Forgot your password? <a id="showPasswordResetForm">Click Here</a></span>
+        <span style="font-size: 14px; margin-top: 10px;">To sign-up for a therapist profile, <a href="onboard-therapist.html">Click Here</a></span>
+    </form>
+
+    <form id="passwordResetEmailForm">
+        <h3>Password Reset</h3>
+        <label for="passwordResetEmail">E-mail:</label>
+        <input type="email" id="passwordResetEmail" placeholder="someone@email.com" size="25">
+        <p id="passwordResetEmailErr" style="font-size: 12px; color: black;"></p>
+        <span id="passwordResetButtons"style="display: flex; justify-content: center;">
+            <input style="font-size: 14px" type="submit" id="passwordResetButton" value="Submit">
+            <div style="font-size: 14px" class="solidGrayBtn" id="passwordResetCancel">Cancel</div>
+        </span>
+        <div style="font-size: 14px" class="solidGreenBtn" id="passwordResetConfirm">OK</div>
+    </form>
+
+</nav>
+<img class="burgerMenu" src="img/Burger-Black.png">
+</section>
+
+
+`
+$('header').empty();
+$('header').append(headerInsert);
+
+//  ********** Footer Insert **********
+const footerInsert = `
+
+<span><a href="privacy-policy.html" class="linkFooter">Privacy Policy</a> | <a href="tos.html" class="linkFooter">Terms of Use</a> | <a href="" class="linkFooter">Diversity Statement</a></span>
+<a class="eleosFooterLogo" href="https://www.eleos.health/">Supported by<img class="eleosFooter" src="img/Eleos Logo White 2019.png"></a>
+<p style="font-size: 8px;" title="Copyright Info">&copy;2020 David Cheatham ~ All Rights Reserved</p>
+
+
+`
+
+$('footer').empty();
+$('footer').append(footerInsert);
+
+
+
 //  ********** Burger Menu **********
-$('.topMenuFrame').on('click', '.burgerMenu', function(){
+$('header').on('click', '.burgerMenu', function(){
     $('.topMenu').toggleClass('isActive');
 });
 
-//  ********** Therapist Sub-Menu **********
-$('.therapistSubmenu').hide();
-$('.therapistMenu').mouseover(function() {
-    $('.therapistSubmenu').show();
-});
-$('.therapistMenu').mouseleave(function() {
-    $('.therapistSubmenu').hide();
+//  ********** Header Menu **********
+$('.subNav').hide();
+$('header').on('mouseover', '.topNav', function(){
+    // $('.subNav').show();
+    $(this).children('.subNav').show();
 });
 
-//  ********** Frontliner Sub-Menu **********
-$('.frontlinerSubmenu').hide();
-$('.frontlinerMenu').mouseover(function() {
-    $('.frontlinerSubmenu').show();
-});
-$('.frontlinerMenu').mouseleave(function() {
-    $('.frontlinerSubmenu').hide();
+$('header').on('mouseleave', '.topNav', function(){
+    $('.subNav').hide();
 });
 
 

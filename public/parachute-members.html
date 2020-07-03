@@ -6,8 +6,8 @@
 		<link rel="apple-touch-icon-precomposed" href="img/favicon-152.png">
 		<link rel="icon" sizes="16x16" href="img/parachute16px.ico">
 		<link rel="icon" sizes="32x32" href="img/parachute32px.ico">
-		<link rel="icon" sizes="128x128" href="img/parachute128px.ico.ico">
-		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+		<link rel="icon" sizes="128x128" href="img/parachute128px.ico">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
 		<!-- Must Be First -->
@@ -25,76 +25,24 @@
 	<body>
 		
 		<header>
-			<section class="topMenuFrame centerFlex">
-				<a href="index.html" id="bannerLink"><img class="bannerPicture" src="img/ProjectParachute_words.png"></a>
-				<nav class="topMenu">
-					<a href="profile.html" class="navItem" id="profileButton">My Profile</a>
-					<span class="navItem therapistMenu">I'm a Therapist
-						<span class="subNav therapistSubmenu">
-							<span class="navItem loginMenuButton">Log In</span>
-							<a href="onboard-therapist.html" class="navItem">Volunteer</a>
-						</span>
-					</span>
-
-					<span class="navItem frontlinerMenu">I'm A Frontliner
-						<span class="subNav frontlinerSubmenu">
-							<a href="parachute-members.html" class="navItem">Individual Therapy</a>
-							<a href="group-support.html" class="navItem">Group Support</a>
-						</span>
-					</span>
-
-
-					<a href="faq.html" class="navItem">FAQ</a>
-					<span class="socialWrapper">
-						<img class="socialIcon contactUs" src="img/128pxContact.png" title="Contact Us">
-					</span>
-					
-					<form id="loginForm">
-						<h3>Therapist Login</h3>
-						<label for="loginEmail">E-mail:</label>
-						<input type="email" id="loginEmail" placeholder="someone@email.com" size="25">
-						<label for="loginPassword">Password:</label>
-						<input type="password" id="loginPassword" size="25">
-						<p id="loginErr" style="font-size: 12px; color: red;"></p>
-						<span style="display: flex; justify-content: center;">
-							<input style="font-size: 14px" type="submit" id="loginButton" value="Sign In">
-							<div style="font-size: 14px" class="solidGrayBtn" id="loginCancel">Cancel</div>
-						</span>
-						<span style="font-size: 14px">Forgot your password? <a id="showPasswordResetForm">Click Here</a></span>
-						<span style="font-size: 14px; margin-top: 10px;">To sign-up for a therapist profile, <a href="onboard-therapist.html">Click Here</a></span>
-					</form>
-
-					<form id="passwordResetEmailForm">
-						<h3>Password Reset</h3>
-						<label for="passwordResetEmail">E-mail:</label>
-						<input type="email" id="passwordResetEmail" placeholder="someone@email.com" size="25">
-						<p id="passwordResetEmailErr" style="font-size: 12px; color: black;"></p>
-						<span id="passwordResetButtons"style="display: flex; justify-content: center;">
-							<input style="font-size: 14px" type="submit" id="passwordResetButton" value="Submit">
-							<div style="font-size: 14px" class="solidGrayBtn" id="passwordResetCancel">Cancel</div>
-						</span>
-						<div style="font-size: 14px" class="solidGreenBtn" id="passwordResetConfirm">OK</div>
-					</form>
-
-					<!-- <a href="https://www.eleos.health/"><img class="eleosPicture" src="img/Eleos Logo White 2019.png"></a> -->
-				</nav>
-				<img class="burgerMenu" src="img/Burger.png">
-			</section>
 		</header>
 
 		<main>
-			<section class="parachuteLogoWrapper">
-				<img class="parachuteLogo" src="img/ProjectParachute_logo_rev.png">
-			</section>
 			<section class="viewBox">
+				<span class="container">
+					<img class="mainScreenImg relative" src="img/doctor-banner.jpg">
+				</span>
 				<section id="tosSection" class="memberWrap">
-					<h3 style="text-align: left;">Terms of Service:</h3>
-					<p style="text-align: left;">Project Parachute provides a service that matches therapists and healthcare frontliners. Although we attempt to verify therapists’ licenses when therapists join Project Parachute, it is your responsibility to verify your therapist’s credentials before your first session. Verify that the therapist’s license is valid in the state in which they practice and that the therapist is not subject to any license strictures preventing practice. We are not responsible for the quality of therapeutic services offered.</p>
-					<p style="text-align: left;">It is your responsibility to evaluate the accuracy, completeness or usefulness of any information, opinion, advice or other content available through this site. Please seek the advice of professionals, as appropriate, regarding the evaluation of any specific information, opinion, advice or other content.</p>
-					<p style="text-align: left;">This site is not intended to be a substitute for professional advice. Under no circumstances will we be liable for any loss or damage caused by your reliance on information obtained through the site.</p>
-					<p style="text-align: left;">We do not endorse any third party’s products, services, websites, experience or background or otherwise. We do not make any representations or warranties with regard to any materials provided by the third parties.</p>
-					<!-- <p style="text-align: left;"><a href="https://www.eleos.health/terms-of-service">Terms of Service</a></p> -->
+					<h2>Find a Therapist</h2>
+					<p style="text-align: left; font-weight: bold;">Please read the following information before proceeding and then click continue at the bottom of this page to access our directory.</p>
+					<p style="text-align: left;">Project Parachute connects COVID-19 frontline healthcare workers and their family members (currently limited to spouses, domestic partners, and children) with therapists in their state who have donated free tele-mental health services.</p>
+	
+					<p style="text-align: left; font-weight: bold;">In a moment, you will have the ability to choose a therapist from our directory.</p>
+					<p style="text-align: left;">When you select a therapist through the Project Parachute website, a volunteer will reach out to that therapist on your behalf. You will then receive a confirmation email from Project Parachute. Within a few days, your therapist will contact you directly to set up an appointment.</p>
 					
+					<p style="text-align: left; font-weight: bold;">Our volunteers remain on stand-by to assist you throughout the booking process.</p>
+					<p style="text-align: left;">If for any reason your booking falls through, we are here to help you find another provider.</p>
+
 					<btn class="solidGreenBtn" id="agreeTOS">I Agree to Terms of Service</btn>
 				</section>
 				<section id="questionnaire" class="memberWrap">
@@ -320,9 +268,6 @@
 			</section>
 		</main>
 		<footer>
-			<span class="contactFooter contactUs">Contact Us</span>
-			<a class="eleosFooterLogo" href="https://www.eleos.health/">Supported by<img class="eleosFooter" src="img/Eleos Logo White 2019.png"></a>
-			<p title="Copyright Info">&copy;2020 David Cheatham ~ All Rights Reserved</p>
 		</footer>
 	</body>
 </html>

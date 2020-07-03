@@ -20,7 +20,7 @@
 }
 
 body {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -55,9 +55,10 @@ a {
 
     /* Sheet Header */
 header {
-    background: #05143f;
-    color: white;
+    background: white;
+    color: black;
     position: fixed;
+    font-size: 16px;
     width: 100%;
     z-index: 100;
 
@@ -69,7 +70,6 @@ header {
 
 .bannerPicture {
     height: 48px;
-    width: 150px;
 }
 
 .eleosPicture {
@@ -99,11 +99,12 @@ header {
     background-color: #67dcfc;
 }
 
-.contactFooter {
-    cursor: pointer;
+.linkFooter {
+    color: white;
+    text-decoration: none;
 }
 
-.contactFooter:hover {
+.linkFooter:hover {
     color: #67dcfc;
     text-decoration: underline;
 }
@@ -121,8 +122,8 @@ header {
 #passwordResetEmailForm {
     max-width: 95%;
     max-height: 95%;
-    background-color: #e7f1f5;
-    border: 3px solid #03a7ff;
+    background-color: white;
+    border: 3px solid #05143f;
     border-radius: 20px;
     padding: 10px;
     position: fixed;
@@ -164,11 +165,17 @@ header {
     max-width: 1200px;
 }
 
+
+
 .topMenuFrame {
     position: relative;
     align-items: flex-end;
     margin: 0 auto;
     z-index: 100;
+}
+
+.topMenu {
+    background-color: white;
 }
 
 nav {
@@ -184,47 +191,72 @@ nav {
 }
 
 .navItem {
+    color: black;
     position: relative;
-    color: white;
-    background-color: #05143f;
     text-decoration: none;
-    padding: 5px 10px;
+    font-weight: bold;
+    padding: 3px;
     margin: 0 5px;
-    border-bottom: 2px solid #67dcfc;
-    border-top: 2px solid #67dcfc;
-    font: normal normal normal 20px/1.4em worksans-extralight,'work sans',sans-serif;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-    z-index: 1000;
     cursor: pointer;
 }
 
 .subNav {
+    background: white;
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: -135px;
+    right: 110px;
     top: -2px;
 }
 
+.aboutNav {
+    width: 75px;
+}
 
-.therapistSubmenu * {
+.supportNav {
+    width: 185px;
+}
+
+.involvedNav {
+    width: 160px;
+}
+
+.faqNav {
+    width: 105px;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, 10%);
+}
+
+.mainButtonNav {
+    flex-direction: column;
+}
+
+/* .therapistSubmenu * {
     width: 110px;
 }
 
 .frontlinerSubmenu * {
     width: 115px;
-}
+} */
 
 #covid {
     color: #d16a40;
 }
 
 .navItem:hover,
-#covid:hover,
-a:hover,
 .burgerMenu:hover {
-    color: #67dcfc;
+    text-decoration: underline;
 }
 
 
@@ -240,6 +272,31 @@ a:hover,
 }
 
 /* Main */
+
+.mainScreen {
+
+}
+
+.mainScreenImg {
+    width: 100%;
+    opacity: .5;
+    min-height: 500px;
+    object-fit: cover;
+    display: block;
+
+}
+
+.mainOverlay {
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    color: black;
+}
+
+.mainButton {
+    text-transform: uppercase;
+    width: 220px;
+}
 
 main {
     flex: 1;
@@ -265,8 +322,7 @@ main {
 
 .viewBox {
     text-align: center;
-    margin: 0 auto;
-    position: relative;
+    margin:  55px auto 0;
 }
 
 .bulletList {
@@ -329,14 +385,14 @@ main {
 
 .solidGreenBtn,
 input[type="submit"] {
-    background-color: #4eff78;
-    border: 2px solid #4eff78;
+    background-color: #05143f;
+    border: 2px solid #05143f;
+    color: white;
     font-size: 22px;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 20px;
     margin: 10px 20px;
-    color: black;
     border-radius: 30px;
     display: flex;
     justify-content: center;
@@ -371,7 +427,7 @@ input[type="submit"]:disabled {
 .requestApptBtn:hover,
 .requestApptBtnGroup:hover,
 input[type="submit"]:hover {
-    color: white;
+    color: #67dcfc;
 }
 
 .hollowGreenBtn {
@@ -684,8 +740,8 @@ footer p {
 
 .eleosFooter {
     padding-left: 5px;
-    height: 20px;
-    width: 65px;
+    height: 18px;
+    width: 55px;
 }
 
 #confirmSubmitFrame {
@@ -861,17 +917,21 @@ footer p {
 
     .subNav {
         left: -5px;
-        top: 34px;
-        
+        top: 31px;
     }
 
-    .therapistMenu {
+    .subNav * {
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    /* .therapistMenu {
         width: 110px;
     }
 
     .frontlinerMenu {
         width: 115px;
-    }
+    } */
 
     .blueIcon {
         display: inline-block;
@@ -898,9 +958,13 @@ footer p {
     }
 
     .navItem {
-        font: normal normal normal 16px/1.4em worksans-extralight,'work sans',sans-serif;
         border-top: none;
     }
+
+    .mainButtonNav {
+        flex-direction: row;
+    }
+
 }
 
 @media (min-width: 800px) {
@@ -919,6 +983,25 @@ footer p {
     
     .availabilityWrap {
         max-width: 250px;
+    }
+
+    .mainOverlay {
+        width: 600px;
+    }
+
+    .centered {
+        transform: translate(-50%, 80%);
+    }
+
+}
+
+@media (min-width: 1000px) {
+    .mainOverlay {
+        width: 800px;
+    }
+
+    .centered {
+        transform: translate(-50%, 150%);
     }
 
 }
