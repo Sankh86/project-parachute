@@ -225,6 +225,15 @@ nav {
     width: 105px;
 }
 
+.faqQuestionBox {
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+}
+
+.faqQuestionBox:nth-child(1n) .faqQuestion {
+    padding: 10px;
+}
+
 .container {
     position: relative;
     text-align: center;

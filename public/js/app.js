@@ -1217,3 +1217,11 @@ $('#requestApptBoxGroup').submit(function(e) {
 
 
 });
+
+
+
+//  ********** FAQ Hide/Show **********
+
+$('.faqQuestionBox').click(function() {
+    $(this).children('.faqAnswerBox').toggle("slow");
+});
