@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Project Parachute</title>
+		<link rel="apple-touch-icon-precomposed" href="img/favicon-152.png">
+		<link rel="icon" sizes="16x16" href="img/parachute16px.ico">
+		<link rel="icon" sizes="32x32" href="img/parachute32px.ico">
+		<link rel="icon" sizes="128x128" href="img/parachute128px.ico">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+		<!-- Must Be First -->
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer></script>
+		<!-- Firebase Addins -->
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js" defer></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js" defer></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-functions.js" defer></script>
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+		<script src="js/init.js" defer></script>
+		<script src="js/app-min.js" defer></script>
+	</head>
+	<body>
+		
+		<header>
+
+		</header>
+
+		<main>
+			<section class="viewBox">
+				<span class="container">
+					<img class="mainScreenImg relative" src="img/doctor-banner.jpg">
+					<div class="centerFlex mainOverlay centered">
+						<h1 style="font-size: 50px">Additional Resources</h1>
+					</div>
+                </span>
+                <!-- <div>
+					<a href="#getHelpNow" class="navItem">Get Help Now</a>
+                    <a href="#essetialWorkers" class="navItem">Essential/Healthcare Workers</a>
+                    <a href="#BIPOC" class="navItem">BIPOC</a>
+                    <a href="#LGBTQ" class="navItem">LGBTQ+</a>
+                </div> -->
+                
+                <section id="getHelpNow">
+                    <p style="margin-top: 50px;"><span style="color: red; font-weight: bold;">Call 911 Emergency</span> or use any of the following resources to get immediate help.</p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">Suicide & Self-Harm</span><br>
+                        <a href="https://suicidepreventionlifeline.org/" target="_blank">National Suicide Prevention Lifeline</a>: +1 (800) 273-8255<br>
+                        <a href="https://selfinjury.com/" target="_blank">Self-Harm Hotline</a>: +1 (800) 366-8288<br>
+                        <a href="http://www.crisischat.org/" target="_blank">Lifeline Crisis Chat</a><br>
+                        <a href="http://suicideprevention.wikia.com/" target="_blank">Suicide Prevention Wiki of Crisis Hotlines</a>
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">Eating Disorders</span><br>
+                        <a href="https://www.nationaleatingdisorders.org/help-support/contact-helpline" target="_blank">National Eating Disorder Association Helpline</a>: +1 (800) 931-2237 for crisis text “NEDA” too 741741<br>
+                        <a href="https://www.nationaleatingdisorders.org/chat" target="_blank">National Eating Disorder Association Chat</a>
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">Family Violence</span><br>
+                        Family Violence Helpline: +1 (800) 996-6228<br>
+                        <a href="https://www.childhelp.org/childhelp-hotline/" target="_blank">The Childhelp National Child Abuse Hotline</a>: Call or Text +1 (800) 422-4453<br>
+                        <a href="https://m2.icarol.com/ConsumerRegistration.aspx?org=2075&pid=555&cc=en-US" target="_blank">Childhelp Live Chat Portal</a>
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">To find a health center near you</span><br>
+                        <a href="https://www.plannedparenthood.org/about-us/contact-us" target="_blank">Planned Parenthood Hotline</a>: +1 (800) 230-7526
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">For Frontline Workers</span><br>
+                        <a href="https://www.physiciansupportline.com/" target="_blank">Physician Support Line</a>: +1 (888) 409-0141 (8AM - 12AM, EST)<br>
+                        <a href="https://www.forthefrontlines.org/" target="_blank">For the Frontlines Crisis Text Line</a>: Text &ldquo;FRONTLINE&rdquo; to 741741<br>
+                        <a href="https://www.magellanhealthcare.com/covid-19-2/covid-19/" target="_blank">Healthcare crisis line for COVID-19 first responders &amp; healthcare workers </a>: +1 (800) 327-7451
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">For Black Individuals</span><br>
+                        <a href="https://www.callblackline.com/" target="_blank">BlackLine</a>: +1 (888) 409-0141 (8AM - 12AM, EST)
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">For LGBTQ+ Individuals</span><br>
+                        <a href="https://www.glbthotline.org/" target="_blank">LGBT National Hotline (for all ages)</a>: +1 (888) 843-4564<br>
+                        <a href="https://www.thetrevorproject.org/get-help-now/" target="_blank">TREVOR Crisis Hotline</a>: +1 (866) 488-7386<br>
+                        AIDS Crisis Line: +1 (800) 221-7044<br>
+                        <a href="https://www.translifeline.org/hotline" target="_blank">The Trans Lifeline</a>: +1 (877) 565-8860
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">For Veterans</span><br>
+                        <a href="https://www.veteranscrisisline.net/" target="_blank">Veterans Crisis Line</a>: Call +1 (800) 273-8255 and press 1 or text 838255<br>
+                        <a href="https://www.veteranscrisisline.net/get-help/chat/" target="_blank">Veterans Crisis Chat</a>
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">Substance Use</span><br>
+                        Alcoholism & Drug Dependency Hope Line: +1 (800) 622-2255<br>
+                        <a href="https://www.poison.org/" target="_blank">American Association of Poison Control Centers</a>: +1 (800) 222-1222
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">Substance Use</span><br>
+                        Alcoholism & Drug Dependency Hope Line: +1 (800) 622-2255<br>
+                        <a href="https://www.poison.org/" target="_blank">American Association of Poison Control Centers</a>: +1 (800) 222-1222
+                    </p>
+                    <p style="text-align: left;"><span style="font-weight: bold;">General Support</span><br>
+                        <a href="https://www.crisistextline.org/" target="_blank">Crisis Text Line</a>: Text &ldquo;HOME&rdquo; to 741741<br>
+                        <a href="https://www.samhsa.gov/find-help/disaster-distress-helpline" target="_blank">SAMSHSA&rsquo;s Disaster Distress Helpline</a> (for pandemic, incidents of community unrest, incidents of community violence): +1 (800) 985) 5990 or Text &ldquo;TalkWithUs&rdquo; to 66746<br>
+                        <a href="https://www.ndbh.com/CrisisResources" target="_blank">New Directions Emotional Helpline</a>: +1 (833) 848-1764<br>
+                        <a href="https://integralcare.org/en/contact/" target="_blank">Integral Care (available in 15 languages)</a>: +1 (512) 472 - 4357
+                    </p>
+
+
+                </section>
+            
+
+                
+                
+                
+                
+                <!-- <p style="text-align: left;"><span style="font-weight: bold;">Inclusion</span> reflects an organizational climate that consciously values the heterogeneity of experiences, perspectives, and identities of a diverse community.</p>
+                <p style="text-align: left;">Project Parachute values all forms of diversity, and strives to disrupt <a href="https://www.psychiatry.org/psychiatrists/cultural-competency/education/mental-health-facts" target="_blank">existing health inequities</a> by targeting many of the social, cultural, and institutional barriers that exist to prevent people from acquiring quality mental health services. The Project Parachute community actively pursues these ideals, with particular emphasis as follows:</p>
+                <ul class="bulletList" style="padding-left: 40px;">
+                    <li>To encourage and support a diverse representation of frontline healthcare workers and their family members in seeking out mental health.</li>
+                    <li>To recruit a diverse network of therapists who can provide culturally-competent care to the frontline healthcare workers and their family members who ask for help through our platform.</li>
+                    <li>To adapt evidence-based initiatives that support the experience of frontline healthcare workers and their family members from diverse backgrounds when accessing our services and receiving care. </li>
+                    <li>To advance diversity and inclusion through community building, education, and open dialogue amongst members of the Project Parachute community. </li>
+                </ul> -->
+            </section>
+        </main>
+		<footer>
+
+		</footer>
+	</body>
+</html>
