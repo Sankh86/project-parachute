@@ -117,7 +117,6 @@ header {
     cursor: pointer;
 }
 
-#contactUsForm,
 #contactUsComplete,
 #loginForm,
 #pwUpdateForm,
@@ -138,6 +137,13 @@ header {
 
 }
 
+#contactUsForm {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
 #contactUsComplete,
 #loginForm,
 #pwUpdateForm,
@@ -154,9 +160,6 @@ header {
     color: black;
 }
 
-#contactUsForm span {
-    width: calc(100% - 20px);
-}
 
 .contactButtons {
     display: flex;

@@ -961,7 +961,7 @@ $('html').on('click', '.contactUs', function(){
                                     <p style="text-align:left">Please feel free to reach out to us at <a href = "mailto: projectparachute.eleos@gmail.com">projectparachute.eleos@gmail.com</a>, or fill out the form below.</p>
                                     <p style="text-align:left">We'd love to hear from you.</p>
                                     <span class="formLabelBox">
-                                        <input type="text" placeholder="Name" id="contactName" maxlength="50" required>
+                                        <input type="text" placeholder="Full Name" id="contactName" maxlength="50" required>
                                     </span>
                                     <span class="formLabelBox">
                                         <input type="email" placeholder="Email" id="contactEmail" maxlength="50" required>
